@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/2186baf3-cae3-4f40-bc59-ddd12759401d/resourceGroups/Juegos/providers/Microsoft.Web/sites/wwbm",
+    "appService.deploySubpath": "."
+}
