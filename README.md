@@ -1,2 +1,2 @@
-# WWBM
-Who want to be millionare
+# Juego Preguntados
+Juego inspirado en preguntados
