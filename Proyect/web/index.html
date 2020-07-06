@@ -8,16 +8,20 @@
     <!--Jquery CDN-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!--CSS General-->
-    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/general.css" />
+    <script src="js/index.js"></script>
     <title>Preguntados</title>
   </head>
 
-  <body>
-    <nav
-      class="navbar navbar-light navbar-expand-lg bg-white shadow-min"
-    >
+  <body class="bg-azul">
+    <nav class="navbar navbar-light navbar-expand-lg bg-white shadow-min">
       <div class="container">
-          <img class="mx-2" src="https://image.flaticon.com/icons/svg/3062/3062707.svg" alt="rompecabezas" width="50px">
+        <img
+          class="mx-2"
+          src="https://image.flaticon.com/icons/svg/3062/3062707.svg"
+          alt="rompecabezas"
+          width="50px"
+        />
         <a class="navbar-brand logo" href="#">Preguntados</a>
         <button
           data-toggle="collapse"
@@ -48,15 +52,14 @@
         </div>
       </div>
     </nav>
-    <div class="d-flex justify-content-center">
+    <!--
+      <div class="d-flex justify-content-center">
         <div class="spinner-border" role="status">
           <span class="sr-only">Loading...</span>
         </div>
       </div>
-    <div class="container-fluid">
-        
-    </div>
-    <div class="container">
+    -->
+    <div class="container my-4 bg-white">
       <div class="block-heading">
         <h2 class="text-info">Features</h2>
         <p>
@@ -99,8 +102,30 @@
         </div>
       </div>
     </div>
-    <footer>
-      Inspirado en el juego Preguntados
+    <div class="container">
+      <div class="row">
+        <div class="col-10">
+          <center>
+            <button
+              type="button"
+              name="jugar"
+              id="jugar"
+              class="btn bg-info text-white py-4 my-5 mx-auto w-25"
+            >
+              Jugar
+            </button>
+          </center>
+        </div>
+      </div>
+    </div>
+    <footer class="foot bg-info py-2">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10">
+            Inspirado en el juego Preguntados
+          </div>
+        </div>
+      </div>
     </footer>
   </body>
 </html>
