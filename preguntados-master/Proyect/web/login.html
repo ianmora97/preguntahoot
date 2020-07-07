@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <!--Jquery CDN-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--CSS General-->
+    <link rel="stylesheet" href="css/general.css" />
+    <script src="js/login.js"></script>
+  </head>
+  <body class="bg-graylight">
+    <div class="container w-25 mx-auto my-5 p-0 rounded bg-white h-50">
+      <div>
+        <img
+          src="https://i-cdn.phonearena.com/images/articles/257819-image/gifcrop.gif"
+          alt="cube"
+          class="rounded-top"
+          width="100%"
+        />
+      </div>
+      <div class="row mx-auto w-80 myt-2">
+            <div class="col-3">
+                <label class="py-2" for="user">Usuario</label>
+                <label class="py-2 my-4" for="clave">Contrase&ntilde;a</label>
+            </div>
+            <div class="col-9">
+                <div class="form-group">
+                    <input type="text" name="user" id="user" class="form-control" placeholder="Usuario..." aria-describedby="usuarioHelp">
+                    <small id="usuarioHelp" class="text-muted">Username o nombre de usuario</small>
+                </div>
+                <div class="form-group">
+                  <input type="text" name="clave" id="clave" class="form-control" placeholder="Contrase&ntilde;a..." aria-describedby="claveHelp">
+                  <small id="claveHelp" class="text-muted">Contrase&ntilde;a para ingresar</small>
+                </div>
+            </div>
+      </div>
+      <div class="row mx-auto w-80 ">
+          <div class="btn btn-success my-2 mx-auto w-50 myb-2" id="entrarButon">
+            <img class="justify-content-lg-start" style="filter: invert(1);" src="https://image.flaticon.com/icons/svg/1828/1828391.svg" alt="login" width="20px">
+            <span>Entrar</span>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
