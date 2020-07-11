@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jugar</title>
+    <link rel="stylesheet" type="text/css" href="https://demo.tastyigniter.com/app/system/assets/ui/flame.css"
+        name="flame-css" />
+    <link rel="stylesheet" type="text/css" href="https://demo.tastyigniter.com/app/admin/assets/css/admin.css"
+        name="admin-css" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <!--Jquery CDN-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!--CSS General-->
+    <link rel="stylesheet" href="css/general.css" />
+    <script src="js/client/game.js"></script>
+    <script src="js/client/logicGame.js"></script>
+</head>
+
+<body class="bg-azul">
+
+    <div class="position-absolute w-100 h-100 op-0-8"
+        style=" width: 100%; z-index: -4; left:0; background-color: white; opacity: 0.2; filter: blur(4px);">
+        <div class="" style="z-index: -10; top: 10%; ">
+            <img src="images/ruleta.png" class="spinWating" width="100%">
+        </div>
+    </div>
+
+
+    <div class="container" style="z-index: 99;">
+        <div class="row">
+            <div class="col-12 mx-auto">
+                <h1 class="mx-auto my-3 text-white text-center font-1">
+                    Partida Nueva
+                </h1>
+            </div>
+        </div>
+        <div class="">
+            <div class="d-flex justify-content-center">
+                <div class="spinner-border text-light" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <span class="mt-2 text-light"> &nbsp; &nbsp; Esperando Usuarios</span>
+            </div>
+            <div class="card mt-3">
+                <div class="card-header">
+                    Usuarios
+                </div>
+                <div class="card-body" id="usuariosSesion">
+                    <i style="color: darkorange;" class="fas fa-crown"></i> <span id="anfitrion"></span>
+                    <div class="dropdown-divider"></div>
+                </div>
+                <div class="card-footer ">Codigo de partida:&nbsp;
+                    <span class="text-success font-1 text-uppercase" id="keyGame"></span>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <img src="http://www.preguntados2.com/img/bg-clouds-lg.svg" width="100%" class="footer" alt="" />
+</body>
+
+</html>
