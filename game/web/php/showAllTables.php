@@ -1,9 +1,3 @@
-<?php
-$con = mysqli_connect("localhost","ianmo","root","preguntados");
-if(!$con){
-	die("No se ha podido conectar a la base de datos");
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,57 +28,8 @@ if(!$con){
 				      <th scope="col">Rol</th>
 				    </tr>
 				  </thead>
-				  <tbody>
-				    <?php
-				    $consulta = "select * from usuario";
-				    if($result = mysqli_query($con,$consulta)){
-				    	while($fila = mysqli_fetch_row($result)){
-				    		$row = "
-							<tr>
-							  <td>".$fila[0]."</td>
-						      <td>".$fila[1]."</td>
-						      <td>".$fila[2]."</td>
-						      <td>".$fila[3]."</td>
-						      <td>".$fila[4]."</td>
-						    </tr>
-				    		";
-				    		echo $row;
-				    	}
-				    }
-				    ?>
-				  </tbody>
-				</table>
-			</div>
-			<div class="col-lg-4">
-				<h1>Usuarios</h1>
-				<table class="table table-bordered table-xl">
-				  <thead class="thead-dark">
-				    <tr>
-				      <th scope="col">ID</th>
-				      <th scope="col">Username</th>
-				      <th scope="col">Nombre</th>
-				      <th scope="col">Clave</th>
-				      <th scope="col">Rol</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				    <?php
-				    $consulta = "select * from usuario";
-				    if($result = mysqli_query($con,$consulta)){
-				    	while($fila = mysqli_fetch_row($result)){
-				    		$row = "
-							<tr>
-							  <td>".$fila[0]."</td>
-						      <td>".$fila[1]."</td>
-						      <td>".$fila[2]."</td>
-						      <td>".$fila[3]."</td>
-						      <td>".$fila[4]."</td>
-						    </tr>
-				    		";
-				    		echo $row;
-				    	}
-				    }
-				    ?>
+				  <tbody id="listaUsuarios">
+				    
 				  </tbody>
 				</table>
 			</div>
@@ -92,6 +37,21 @@ if(!$con){
 	</div>
 </body>
 </html>
-<?php 
-mysqli_close($con);
- ?>
+<script>
+	function loaded(event) {
+  		$.ajax({
+            type: "POST",
+            url: 'selectUsers.php',
+            async: true,
+            data: {prueba:1,ejemplo:2},
+            success: function(response){
+                $("#listaUsuarios").append(response);
+           	},
+           	error: function(error){
+           		console.log(error);
+           	}
+       });
+	}
+
+	document.addEventListener("DOMContentLoaded", loaded);
+</script>
