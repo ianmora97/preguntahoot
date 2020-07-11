@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -84,8 +87,8 @@
                                         src="//www.gravatar.com/avatar/10043d8b024e9abf6e92089a262336ba.png?s=64&amp;d=mm" />
                                 </div>
                                 <div class="pb-3 text-center">
-                                    <div class="text-uppercase" id="nombreParam"></div>
-                                    <div class="text-muted" id="usernameParam"></div>
+                                    <div class="text-uppercase" id="nombreParam"><?php echo $_SESSION['nombre'] ?></div>
+                                    <div class="text-muted" id="usernameParam"><?php echo $_SESSION['user'] ?></div>
                                 </div>
                             </div>
                             <a class="dropdown-item" data-toggle="modal" data-target="#editStaffStatusModal"

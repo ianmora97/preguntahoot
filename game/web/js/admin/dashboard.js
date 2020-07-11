@@ -3,10 +3,10 @@ function loaded(event) {
 }
 
 function events(event) {
-  getUsuario();
+  //getUsuario();
 }
 
-function getUsuario() {
+/*function getUsuario() {
   $.ajax({
     type: "POST",
     url: "api/dash/getuser",
@@ -21,5 +21,5 @@ function getUsuario() {
       alert(error.status);
     }
   );
-}
+}*/
 document.addEventListener("DOMContentLoaded", loaded);

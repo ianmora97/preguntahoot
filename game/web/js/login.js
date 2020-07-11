@@ -15,18 +15,25 @@ function entrar() {
       clave:cla
     };
     $.ajax({
-      type: "POST",
-      url: "api/login",
-      data: JSON.stringify(usuario),
-      contentType: "application/json"
-    }).then(
-      (us) => {
-        location.href = "dashboard.html";
-      },
-      (error) => {
-        alert(error.status);
-      }
-    );
+        type: "POST",
+        url: "php/verifyLogin.php",
+        data: usuario,
+        async: true,
+        success: function(response){
+            if(response == "Success"){
+                location.href = "dashboard.php";
+            }
+            if(response == "NoAccess"){
+                alert("No tiene acceso!")
+            }
+            if(response == "NotFound"){
+                alert("No se encontro el usuario "+usuario.username)
+            }
+            if(response == "BadRequest"){
+                console.log("Query no se ejecuto");
+            }
+        }
+    });
   });
 }
 document.addEventListener("DOMContentLoaded", loaded);

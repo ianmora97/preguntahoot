@@ -16,7 +16,7 @@
 <body>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-lg-4">
+			<div class="col-lg-3">
 				<h1>Usuarios</h1>
 				<table class="table table-bordered table-xl">
 				  <thead class="thead-dark">
@@ -29,6 +29,26 @@
 				    </tr>
 				  </thead>
 				  <tbody id="listaUsuarios">
+				    
+				  </tbody>
+				</table>
+			</div>
+			<div class="col-lg">
+				<h1>Preguntas</h1>
+				<table class="table table-bordered table-xl">
+				  <thead class="thead-dark">
+				    <tr>
+				      <th scope="col">ID</th>
+				      <th scope="col">Texto</th>
+				      <th scope="col">A</th>
+				      <th scope="col">B</th>
+				      <th scope="col">C</th>
+				      <th scope="col">D</th>
+				      <th scope="col">Categoria</th>
+				      <th scope="col">Correcta</th>
+				    </tr>
+				  </thead>
+				  <tbody id="listaPreguntas">
 				    
 				  </tbody>
 				</table>
@@ -50,8 +70,22 @@
            	error: function(error){
            		console.log(error);
            	}
-       });
+       	});
+  		$.ajax({
+            type: "POST",
+            url: 'selectPreguntas.php',
+            async: true,
+            data: {prueba:1,ejemplo:2},
+            success: function(response){
+            	console.log(response);
+                $("#listaPreguntas").append(response);
+           	},
+           	error: function(error){
+           		console.log(error);
+           	}
+       	});
 	}
+
 
 	document.addEventListener("DOMContentLoaded", loaded);
 </script>

@@ -3,27 +3,12 @@ function loaded(event) {
 }
 
 function events(event) {
-  getUsuario();
   cargarPreguntas();
   mostrarCategoriaAgregar();
   agregarPregunta();
   reloadPreguntasList();
 }
-function getUsuario() {
-  $.ajax({
-    type: "POST",
-    url: "api/dash/getuser",
-    contentType: "application/json",
-  }).then(
-    (us) => {
-      $("#nombreParam").text(us.nombre);
-      $("#usernameParam").text(us.username);
-    },
-    (error) => {
-      alert(error.status);
-    }
-  );
-}
+
 function reloadPreguntasList() {
   $("#nav-home-tab").click(function () {
     cargarPreguntas();
@@ -32,98 +17,17 @@ function reloadPreguntasList() {
 function cargarPreguntas() {
   $(document).ready(function () {
     $.ajax({
-      type: "POST",
-      url: "api/dash/getPreguntas",
-      contentType: "application/json",
-    }).then(
-      (preguntas) => {
-        fillListPreguntas(preguntas);
-      },
-      (error) => {
-        alert(error.status);
-      }
-    );
+        type: "POST",
+        url: "php/selectPreguntas.php",
+        async: true,
+        success: function(response){
+          $("#listaPreguntas").append(response);
+        },
+        error: function(error){
+          alert(error);
+        }
+    });
   });
-}
-function fillListPreguntas(preguntas) {
-  $("#listaPreguntas").html("");
-  preguntas.forEach((or) => {
-    fillPregunta(or);
-  });
-}
-function fillPregunta(pregunta) {
-  var texto = pregunta.texto;
-  var id = pregunta.idPregunta;
-  var res_a = pregunta.respuestaA;
-  var res_b = pregunta.respuestaB;
-  var res_c = pregunta.respuestaC;
-  var res_d = pregunta.respuestaD;
-  var categoria = pregunta.idCategoria.nombre;
-  var logo = evaluarCategoria(categoria);
-  var correcta = pregunta.correcta;
-
-  $("#listaPreguntas").append(
-    "<tr>" +
-      '<td class="list-action">' +
-      '<div class="custom-control custom-checkbox">' +
-      '<input type="checkbox" id="checkbox-' +
-      id +
-      '" class="custom-control-input" value="' +
-      id +
-      '" name="checked[]"/>' +
-      '<label class="custom-control-label" for="checkbox-' +
-      id +
-      '">&nbsp;</label></div></td>' +
-      '<td class="list-action ">' +
-      '<a  class="btn-action btn btn-edit" data-original-title="" title="">' +
-      '<i class="fa fa-pencil"></i>' +
-      "</a>" +
-      "</td>" +
-      '<td class="list-col-index-2 list-col-name-id list-col-type-text id="' +
-      id +
-      'selectid">' +
-      id +
-      "</td>" +
-      '<td class="list-col-index-3 list-col-name-texto list-col-type-text ">' +
-      texto +
-      "</td>" +
-      '<td class="list-col-index-3 list-col-name-a list-col-type-text ">' +
-      res_a +
-      "</td>" +
-      '<td class="list-col-index-3 list-col-name-b list-col-type-text ">' +
-      res_b +
-      "</td>" +
-      '<td class="list-col-index-3 list-col-name-c list-col-type-text ">' +
-      res_c +
-      "</td>" +
-      '<td class="list-col-index-3 list-col-name-d list-col-type-text ">' +
-      res_d +
-      "</td>" +
-      '<td class="list-col-index-3 list-col-name-categoria list-col-type-text ">' +
-      logo +
-      " " +
-      categoria +
-      "</td>" +
-      '<td class="list-col-index-3 list-col-name-correcta list-col-type-text ">' +
-      correcta +
-      "</td>"
-  );
-}
-function evaluarCategoria(categoria) {
-  switch (categoria) {
-    case "Arte":
-      return '<i class="fas fa-paint-brush" style="color:red;"></i>';
-    case "Ciencia":
-      return '<i class="fas fa-flask" style="color:#28a745;"></i>';
-    case "Deportes":
-      return '<i class="fas fa-football-ball" style="color:#fd7e14;"></i>';
-    case "Entretenimiento":
-      return '<i class="fas fa-film" style="color:#e83e8c;"></i>';
-    case "Geografia":
-      return '<i class="fas fa-globe-americas" style="color:#007bff;"></i>';
-    case "Historia":
-      return '<img src="images/history.png" alt="historia" width="20px">';
-  }
 }
 
 function mostrarCategoriaAgregar() {

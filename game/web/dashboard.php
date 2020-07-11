@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -15,8 +19,8 @@
     <!--Jquery CDN-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!--CSS General-->
-    <link rel="stylesheet" href="../css/general.css" />
-    <script src="../js/admin/dashboard.js"></script>
+    <link rel="stylesheet" href="css/general.css" />
+    <script src="js/admin/dashboard.js"></script>
 </head>
 
 <body class="page bg-graylight">
@@ -58,8 +62,8 @@
                                         src="//www.gravatar.com/avatar/10043d8b024e9abf6e92089a262336ba.png?s=64&amp;d=mm">
                                 </div>
                                 <div class="pb-3 text-center">
-                                    <div class="text-uppercase" id="nombreParam"></div>
-                                    <div class="text-muted" id="usernameParam"></div>
+                                    <div class="text-uppercase" id="nombreParam"><?php echo $_SESSION['nombre'] ?></div>
+                                    <div class="text-muted" id="usernameParam"><?php echo $_SESSION['user'] ?></div>
                                 </div>
                             </div>
                             <a class="dropdown-item" data-toggle="modal" data-target="#editStaffStatusModal"
@@ -104,7 +108,7 @@
 
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link tables" href="preguntas.html" aria-expanded="false">
+                            <a class="nav-link tables" href="preguntas.php" aria-expanded="false">
 
                                 Preguntas </a>
 
