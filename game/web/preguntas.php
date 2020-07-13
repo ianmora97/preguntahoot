@@ -114,7 +114,7 @@ session_start();
         <div id="navSidebar" class="nav-sidebar bg-azul">
             <ul id="side-nav-menu" class="nav">
                 <li class="nav-item active">
-                    <a class="nav-link dashboard admin" href="dashboard.html" aria-expanded="true">
+                    <a class="nav-link dashboard admin" href="dashboard.php" aria-expanded="true">
                         <i class="fa fa-tachometer-alt fa-fw"></i>
 
                         <span class="content">Dashboard</span>

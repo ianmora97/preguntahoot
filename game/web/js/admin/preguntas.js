@@ -21,7 +21,8 @@ function cargarPreguntas() {
         url: "php/selectPreguntas.php",
         async: true,
         success: function(response){
-          $("#listaPreguntas").append(response);
+            $("#listaPreguntas").html("");
+            $("#listaPreguntas").append(response);
         },
         error: function(error){
           alert(error);
