@@ -5,14 +5,17 @@ function loaded(event){
     recibir();
 }
 function sendAction(){
-    $('#send').on('click',function (){
-        var mensaje = $('#mensaje').val();
-        var usuario = $('#username').val();
-        console.log(usuario + " " + mensaje);
-        socket.emit('chat:message',{
-           message:  mensaje,
-           username: usuario
-        });
+    $('#mensaje').on('keydown',function (event){
+        if(event.which == 13){
+            var mensaje = $('#mensaje').val();
+            var usuario = $('#username').val();
+            console.log(usuario + " " + mensaje);
+            socket.emit('chat:message',{
+            message:  mensaje,
+            username: usuario
+            });
+            $('#mensaje').val('');
+        }
     });
 }
 function recibir(){
