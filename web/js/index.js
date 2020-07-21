@@ -26,8 +26,13 @@ function verifyLogin(){
     });
 }
 function play(){
-    $("#jugar").click(function(){
+    $("#play").click(function(){
         location.href = "play_index.html";
     });
+}
+function playSound(filename){
+    var mp3Source = '<source src="sounds/pop-click.mp3" type="audio/mpeg">';
+    var embedSource = '<embed hidden="true" autostart="true" loop="false" src="sounds/pop-click.mp3">';
+    $('#play').append('<audio autoplay="autoplay">' + mp3Source + embedSource + '</audio>');
 }
 document.addEventListener("DOMContentLoaded", loaded);

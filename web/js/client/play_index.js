@@ -15,7 +15,7 @@ function infoGuest() {
 }
 function openCardPartidaNueva() {
   $("#nuevaPartida").click(function () {
-    $("#cardnuevapartida").slideToggle();
+    $("#cardnuevapartida").fadeIn();
   });
 }
 function ocultarCards() {
@@ -29,7 +29,7 @@ function openCardKeyPartida() {
     if (valor.length === 6) {
       $.ajax({
         type: "POST",
-        url: "api/keyGame/getKey",
+        url: "/checkKeyGame",
         data: JSON.stringify(llave),
         contentType: "application/json",
       }).then(
@@ -44,7 +44,7 @@ function openCardKeyPartida() {
           }
         },
         (error) => {
-          alert(error.status);
+          
         }
       );
     }
