@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Socket.io</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" ></script>
+</head>
+<body>
+    <div class="container-fluid bg-warning" style="height: 100vh;">
+        <h1 class="text-center text-white">Chat Socket.io</h1>
+        <div class="row mx-auto bg-white w-100 p-2 my-3 h-75 rounded" style="overflow-y: auto;">
+            <div id="output" style="width: 50%; float: left;">
+
+            </div>
+            <div id="actions" style="width: 50%; float: right;">
+
+            </div>
+        </div>
+        <div class="row bg-white p-2 mx-auto rounded no-gutters">
+            <div class="col-1">
+                <input type="text" class="w-100" name="" id="username" placeholder="Nombre">
+            </div>
+            <div class="col-10">
+                <input type="text" class="w-100" name="" id="mensaje" placeholder="Mensaje">
+            </div>
+            <div class="col-1">
+                <button class="btn btn-primary" id="send">Enviar</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js" charset="utf-8"></script>
+    <script src="chat.js" charset="utf-8"></script>
+</body>
+</html>
