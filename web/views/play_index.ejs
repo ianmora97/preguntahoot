@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jugar</title>
+  <!--CSS General-->
+  <link rel="stylesheet" href="/css/bootstrap.css" />
+  <link rel="stylesheet" href="/css/general.css" />
+  <!--JQuery and Bootstrap-->
+  <script src="/js/jq-bs-bundle.js"></script>
+</head>
+<body class="bg-secondary" style="overflow: hidden;">
+  <img src="https://www.pinclipart.com/picdir/big/214-2140171_cloud-animation-png-clipart.png" class="cloud-1" >
+  <img src="https://www.pinclipart.com/picdir/big/214-2140171_cloud-animation-png-clipart.png" class="cloud-2" >
+  <!--Modales-->
+  <div class="modal fade" id="iniciarSesion" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <h5 class="modal-title text-white">Iniciar Sesion</h5>
+          <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body pt-1">
+          <div class="container w-100 mx-auto p-0 rounded bg-white h-50">
+            <div class="pb-2">
+              <img src="https://i-cdn.phonearena.com/images/articles/257819-image/gifcrop.gif" alt="cube"
+                class="rounded-top" width="100%" />
+            </div>
+            <div class="row mx-auto w-100 no-gutters">
+              <div class="col-12" id="helpIfFail">
+                <div class="form-group mb-2">
+                  <label class="" for="user">Usuario</label>
+                  <input type="text" name="user" id="user" class="form-control" placeholder="Usuario"
+                    aria-describedby="usuarioHelp" />
+                </div>
+                <div class="form-group mb-2">
+                  <label class="" for="clave">Contrase&ntilde;a</label>
+                  <input type="text" name="clave" id="clave" class="form-control" placeholder="Contrase&ntilde;a"
+                    aria-describedby="claveHelp" />
+                </div>
+              </div>
+            </div>
+            <div class="row mx-auto w-80">
+              <div class="btn btn-success mt-1 mx-auto" id="entrarButon">
+                <img class="justify-content-lg-start" style="filter: invert(1);"
+                  src="https://image.flaticon.com/icons/svg/1828/1828391.svg" alt="login" width="20px" />
+                <span>Entrar</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="registrarse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <h5 class="modal-title text-white" id="exampleModalLabel">
+            Registrarse
+          </h5>
+          <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="">
+            <div class="form-group">
+              <label for="name">Nombre</label>
+              <input type="text" name="name" id="nombreRegistrar" class="form-control" placeholder="Nombre"
+                aria-describedby="nombre" required/>
+              <small class="text-muted">Escribe tu nombre.
+              </small>
+            </div>
+            <div class="form-group">
+              <label for="username">Nombre de usuario</label>
+              <input type="text" name="username" id="usernameRegistrar" class="form-control" placeholder="Nombre de usuario"
+                aria-describedby="username" required/>
+              <small class="text-muted">Puedes usar un nickname eg: Frijolito 🥘
+              </small>
+            </div>
+
+            <div class="form-group">
+              <label for="clave">Contrase&ntilde;a</label>
+              <input type="password" name="clave" id="claveRegistrar" class="form-control" placeholder="Contrase&ntilde;a"
+                aria-describedby="clave" required/>
+              <small class="text-muted">Escribe aqui tu Contrase&ntilde;a.
+              </small>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer" id="helpIfFailRegister">
+          <button type="button" id="registrarBoton" class="btn btn-primary text-white" data-dismiss="modal">
+            Registrar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="unirseModalEntrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <h5 class="modal-title text-white" id="exampleModalLabel">
+            Entrar a la partida
+          </h5>
+          <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <ul class="nav nav-pills nav-fill mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="pills-login-tab" data-toggle="pill" href="#pills-login" role="tab" aria-controls="pills-login" aria-selected="false">Login</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link active" id="pills-invitado-tab" data-toggle="pill" href="#pills-invitado" role="tab" aria-controls="pills-invitado" aria-selected="true">Invitado</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade" id="pills-login" role="tabpanel" aria-labelledby="pills-login-tab">
+              <div class="container w-100 mx-auto p-0 rounded bg-white h-50">
+                <div class="row mx-auto w-100 no-gutters">
+                  <div class="col-12" id="helpIfFail">
+                    <div class="form-group mb-2">
+                      <label class="" for="userUnirseLogin">Usuario</label>
+                      <input type="text" name="userUnirseLogin" id="userUnirseLogin" class="form-control" placeholder="Usuario"
+                        aria-describedby="usuarioHelp" />
+                    </div>
+                    <div class="form-group mb-2">
+                      <label class="" for="claveUnirseLogin">Contrase&ntilde;a</label>
+                      <input type="text" name="claveUnirseLogin" id="claveUnirseLogin" class="form-control" placeholder="Contrase&ntilde;a"
+                        aria-describedby="claveHelp" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade show active" id="pills-invitado" role="tabpanel" aria-labelledby="pills-invitado-tab">
+              <form action="/unirsePartida">
+                <div class="form-group">
+                  <label for="nombreInvitadoKey">Nombre</label>
+                  <input type="text" name="nombreInvitadoKey" id="nombreInvitadoKey" class="form-control" placeholder="Nombre..."
+                    aria-describedby="nombre" />
+                  <small id="nombre" class="text-muted">Escribe tu nombre para que los demas sepan quien eres. Puedes usar un 
+                    nickname eg: Frijolito 🥘
+                  </small>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="ingresarBotonKeyPartidaEnter" class="btn btn-primary text-white" data-dismiss="modal">
+            Ingresar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--!modales-->
+  <!-- <div class="position-absolute w-100 h-100 op-0-8"
+    style=" width: 100%; z-index: -4; left:0; background-color: white; opacity: 0.2; filter: blur(4px);">
+    <div class="" style="z-index: -10; top: 10%; ">
+      <img src="/images/ruleta.png" class="loop" width="100%">
+    </div>
+  </div> -->
+
+
+  <div class="container" style="z-index: 99;">
+    <div class="row">
+      <div class="col-12 mx-auto">
+        <h1 class="mx-auto my-3 text-white text-center font-1">
+          Partida Nueva
+        </h1>
+      </div>
+    </div>
+    <div class="">
+      <ul class="nav nav-pills nav-fill mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link text-white font-1" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+            aria-controls="pills-home" aria-selected="true">Crear Partida</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active text-white font-1" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+            aria-controls="pills-profile" aria-selected="false">Unirse a partida</a>
+        </li>
+      </ul>
+      <div class="tab-content d-block" id="pills-tabContent">
+        <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+          <div class=" text-center">
+            <button id="nuevaPartida" class="btn bg-gradient-orange text-white font-1 w-100 h-75">
+              <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-plus-square-fill" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z" />
+              </svg>
+              <h4 class="d-inline">Nueva Partida</h4>
+            </button>
+          </div>
+          <div class="my-2"></div>
+          <div class="col-md-12 p-0">
+            <div id="cardnuevapartida" class="card mx-auto w-100 bg-white text-black" style="display: none;">
+              <div class="card-body" id="opcionesNuevaPartida">
+                <h5 class="card-title">Crear nueva partida</h5>
+                <h6 class="card-subtitle mb-2">
+                  Inicia sesion para crear una nueva partida
+                </h6>
+                <p class="card-text">
+                  Al iniciar sesion todas tus partidas se guardaran.
+                </p>
+                <button class="btn btn-primary" id="openModalLogin" data-toggle="modal" data-target="#iniciarSesion">
+                  Login
+                </button>
+                <button class="btn btn-secondary" id="openModalRegister" data-toggle="modal" data-target="#registrarse">
+                  Registrarse
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+          <div class="text-center">
+            <div class="btn bg-naranja text-white font-1 w-100 h-75" style="cursor: default;">
+              <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-key-fill" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+              </svg>
+              <h5 class="d-inline">Codigo de partida</h5>
+              <input id="inputKey" class="form-control" type="text" maxlength="6" />
+            </div>
+          </div>
+          <div class="my-2"></div>
+          <div class="col-md-12 p-0">
+            <div style="display: none;" id="cardKeyPartida" class="card mx-auto w-100">
+              <div class="card-body">
+                <h5 class="card-title">Codigo de Partida</h5>
+                <p class="card-text">
+                  Juega con tus amigos en una partida de preguntahoot.
+                </p>
+                <span>Codigo de la partida: </span>
+                <span class="font-1 text-danger" id="codigoSpan"></span>
+                <span id="keyExist"></span><br>
+
+                <button class="btn btn-primary mt-3" data-toggle="modal" data-target="#unirseModalEntrar">Entrar a Partida</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <img src="http://www.preguntados2.com/img/castle-top-lg.png" width="" class="fixed-bottom" alt="" />
+  <script src="/socket.io/socket.io.js" charset="utf-8"></script>
+  <script src="/js/client/play_index.js"></script>
+</body>
+</html>
