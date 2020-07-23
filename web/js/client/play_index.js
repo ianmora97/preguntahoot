@@ -1,4 +1,5 @@
 const socket = io();
+var usuarioAnfitrion = {};
 
 function loaded(event) {
   events(event);
@@ -11,6 +12,7 @@ function events(event) {
   openCardKeyPartida();
   registrarse();
   entrarPartidaAfterKey();
+  crearPartidaUsuarioAnfitrion();
 }
 function infoGuest() {
   $(function () {
@@ -41,6 +43,7 @@ function openCardKeyPartida() {
           if (response == 'Success') {
             $("#codigoSpan").removeClass("text-danger");
             $("#codigoSpan").addClass("text-success");
+            $('#entrarPartidaOpenModalKey').attr('disabled',false);
           }
           else{
             $("#keyExist").text(" no existe");
@@ -55,6 +58,7 @@ function openCardKeyPartida() {
       $("#keyExist").text("");
       $("#codigoSpan").addClass("text-danger");
       $("#codigoSpan").removeClass("text-success");
+      $('#entrarPartidaOpenModalKey').attr('disabled',true);
     }
   });
   $("#inputKey").click(function () {
@@ -69,6 +73,7 @@ function iniciarSession() {
       username:usu,
       clave:cla
     };
+    usuarioAnfitrion = usuario;
     $.ajax({
         type: "POST",
         url: "/usuarios/login",
@@ -78,7 +83,7 @@ function iniciarSession() {
       if(response == "Success"){
           $('#iniciarSesion').modal('hide');
           $('#opcionesNuevaPartida').append(
-            '<button class="btn btn-warning" id="crearPartidaBoton">'+
+            '<button class="btn btn-warning" data-toggle="modal" data-target="#createKeyGameModal" id="crearPartidaBoton">'+
             'Crear Partida'+
             '</button>'
           );
@@ -128,34 +133,73 @@ function registrarse() {
   });
 }
 function entrarPartidaAfterKey() {
-  $("#ingresarBotonKeyPartidaEnter").click(function () {
-    var to = $('#codigoSpan').text();
-    var usuario;
-    var check = $('#nombreInvitadoKey').val();
-    if(check == ""){ //hizo login
-      var usu = $('#userUnirseLogin').val();
-      var cla = $('#claveUnirseLogin').val();
-      usuario = {
-        username:usu,
-        clave:cla,
-        token:to
-      };
-    }else{ // entra como invitado
-      usuario = {
-        username:check,
-        token:to
-      };
-    }
+  $("#entrarPartidaOpenModalKey").click(function () {
+    var token = $('#codigoSpan').text();
+    $('#tokenEntrarPartida').val(token);
+    var to =$('#tokenEntrarPartida').val();
+    console.log(to);
+  });
+  // $("#ingresarBotonKeyPartidaEnter").click(function () {
+  //   var to = $('#codigoSpan').text();
+  //   var usuario;
+  //   var check = $('#nombreInvitadoKey').val();
+  //   if(check == ""){ //hizo login
+  //     var usu = $('#userUnirseLogin').val();
+  //     var cla = $('#claveUnirseLogin').val();
+  //     usuario = {
+  //       username:usu,
+  //       clave:cla,
+  //       token:to
+  //     };
+  //   }else{ // entra como invitado
+  //     usuario = {
+  //       username:check,
+  //       token:to
+  //     };
+  //   }
+  //   $.ajax({
+  //       type: "POST",
+  //       url: "/keyGameUnirseAPartida",
+  //       data: JSON.stringify(usuario),
+  //       contentType: "application/json"
+  //   }).then((response) => {
+  //     if(response == "Success"){
+          
+  //     }
+  //     if(response == "NotFound"){
+          
+  //     }
+  //   }, (error) => {
+  //   });
+  //  });
+}
+
+
+function crearPartidaUsuarioAnfitrion() {
+  $('#registrarBotonKeyGame').click(function () {
+    var to = $('#tokenCreate').val();
+    var tok = {
+      token:to,
+      usuario: usuarioAnfitrion
+    };
+    console.log(tok);
     $.ajax({
         type: "POST",
-        url: "/keyGameUnirseAPartida",
-        data: JSON.stringify(usuario),
+        url: "/crearPartidaKeyGame",
+        data: JSON.stringify(tok),
         contentType: "application/json"
     }).then((response) => {
       if(response == "Success"){
-          
+          $('#openModalLogin').hide();
+          $('#openModalRegister').hide();
+          $('#crearPartidaBoton').hide();
+          $('#opcionesNuevaPartida').append(
+            '<a href="/game" class="btn btn-success mx-auto w-50 text-white">'+
+            'Jugar'+
+            '</a>'
+          );
       }
-      if(response == "NotFound"){
+      if(response == "error"){
           
       }
     }, (error) => {

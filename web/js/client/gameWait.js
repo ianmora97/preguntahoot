@@ -4,27 +4,26 @@ function loaded(event) {
 }
 
 function events(event) {
-    //getUsuario();
-    //getKeyGame();
     recibir();
+    unirsePartida();
+    //reloadUsers();
 }
-function crearPartida() {
-    $("#keyGame").click(function () {
-        $.ajax({
-            type: "POST",
-            url: "api/dash/loginCrear",
-            data: JSON.stringify(usuario),
-            contentType: "application/json"
-        }).then(
-                (usuario) => {
-            location.href = "game.html";
-        },
-                (error) => {
-            alert(error.status);
-        }
-        );
-
+function unirsePartida(){
+    var name = $('#nombreUsuarioNuevo').text();
+    socket.emit('unirse-partida',{
+        usuario:name
     });
+}
+function reloadUsers(){
+    socket.emit('get-usuarios','refresh');
+    socket.on('get-usuarios',function (data) {
+        console.log(data);
+        // $('#usuariosSesion').append(
+        //     '<i class="fa fa-user text-secondary"></i> <span>'+data.usuario+'</span>'+
+        //     '<div class="dropdown-divider"></div>'
+        // );
+    });
+    reloadUsers(2000);
 }
 function recibir(){
     socket.on('unirse-partida',function (data) {
@@ -37,6 +36,7 @@ function recibir(){
                 '<div class="dropdown-divider"></div>'
             );
         }
+        
     });
 }
 document.addEventListener("DOMContentLoaded", loaded);

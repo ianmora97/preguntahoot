@@ -117,9 +117,9 @@
         </div>
         <div class="modal-body">
           <ul class="nav nav-pills nav-fill mb-3" id="pills-tab" role="tablist">
-            <li class="nav-item" role="presentation">
+            <!-- <li class="nav-item" role="presentation">
               <a class="nav-link" id="pills-login-tab" data-toggle="pill" href="#pills-login" role="tab" aria-controls="pills-login" aria-selected="false">Login</a>
-            </li>
+            </li> -->
             <li class="nav-item" role="presentation">
               <a class="nav-link active" id="pills-invitado-tab" data-toggle="pill" href="#pills-invitado" role="tab" aria-controls="pills-invitado" aria-selected="true">Invitado</a>
             </li>
@@ -144,36 +144,59 @@
               </div>
             </div>
             <div class="tab-pane fade show active" id="pills-invitado" role="tabpanel" aria-labelledby="pills-invitado-tab">
-              <form action="/unirsePartida">
+              <form action="keyGameUnirseAPartida" method="POST">
                 <div class="form-group">
                   <label for="nombreInvitadoKey">Nombre</label>
                   <input type="text" name="nombreInvitadoKey" id="nombreInvitadoKey" class="form-control" placeholder="Nombre..."
-                    aria-describedby="nombre" />
+                    aria-describedby="nombre" required/>
+                  <input type="hidden" id="tokenEntrarPartida" value="" name="tokenEntrarPartida">
                   <small id="nombre" class="text-muted">Escribe tu nombre para que los demas sepan quien eres. Puedes usar un 
                     nickname eg: Frijolito 🥘
                   </small>
                 </div>
+                <input type="submit" value="Ingresar" id="ingresarBotonKeyPartidaEnter" class="btn btn-primary text-white" >
               </form>
             </div>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" id="ingresarBotonKeyPartidaEnter" class="btn btn-primary text-white" data-dismiss="modal">
-            Ingresar
-          </button>
         </div>
       </div>
     </div>
   </div>
-  <!--!modales-->
-  <!-- <div class="position-absolute w-100 h-100 op-0-8"
-    style=" width: 100%; z-index: -4; left:0; background-color: white; opacity: 0.2; filter: blur(4px);">
-    <div class="" style="z-index: -10; top: 10%; ">
-      <img src="/images/ruleta.png" class="loop" width="100%">
+  <div class="modal fade" id="createKeyGameModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog  modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <h5 class="modal-title text-white">Crear Llave de juego</h5>
+          <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+          <div class="modal-body pt-1">
+            <div class="container">
+              <div class="row">
+                <div class="col-12">
+                  <p>La llave de juego es <strong>unica</strong> para cada partida.</p>
+                  <p>Cree una llave de juego para unirse con mas personas.</p>
+                  <div class="form-group">
+                    <label for="tokenCreate">Llave de juego</label>
+                    <input type="text" name="tokenCreate" id="tokenCreate" class="form-control" placeholder="Token" maxlength="6" min="6" aria-describedby="tokenHelp" required>
+                    <small id="tokenHelp" class="text-muted">La llave de juego debe de ser extrictamente de 6 caracteres</small>
+                  </div>
+                </div>
+                <img src="https://image.flaticon.com/icons/svg/948/948609.svg" alt="key" class="w-25 mx-auto">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer" id="helpIfFailRegister">
+            <button type="button" id="registrarBotonKeyGame" class="btn btn-primary text-white" data-dismiss="modal">
+              Crear Llave
+            </button>
+          </div>
+      </div>
     </div>
-  </div> -->
-
-
+  </div>
+  <!--!modales-->
   <div class="container" style="z-index: 99;">
     <div class="row">
       <div class="col-12 mx-auto">
@@ -250,7 +273,7 @@
                 <span class="font-1 text-danger" id="codigoSpan"></span>
                 <span id="keyExist"></span><br>
 
-                <button class="btn btn-primary mt-3" data-toggle="modal" data-target="#unirseModalEntrar">Entrar a Partida</button>
+                <button type="button" class="btn btn-primary mt-3" id="entrarPartidaOpenModalKey" data-toggle="modal" data-target="#unirseModalEntrar"  disabled >Entrar a Partida</button>
               </div>
             </div>
           </div>

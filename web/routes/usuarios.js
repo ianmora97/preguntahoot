@@ -26,10 +26,20 @@ router.post('/usuarios/login',(req,res)=>{
         if(rows[0] == undefined){
             res.send('NotFound');
         }else{
-            req.flash('usuario',rows[0]);
+            req.flash('usuarioAnfitrion',rows[0]);
             res.send('Success');
         }
     });
+});
+
+router.post('/getUsuarioAnfitrion',(req,res)=>{
+    
+    console.log('[OK] Usuario Anfitrion',usuarioAnfitrion);
+    res.send(usuarioAnfitrion);
+});
+
+router.post('/getUsuariosJuego',(req,res)=>{
+    res.send(usuarios_juego);
 });
 
 router.post('/registrarse',(req,res)=>{
@@ -39,7 +49,7 @@ router.post('/registrarse',(req,res)=>{
         if(result.affectedRows == 0){
             res.send('NotInserted');
         }else{
-            console.log('Se registro un usuario nuevo',result.affectedRows);
+            // console.log('Se registro un usuario nuevo',result.affectedRows);
             res.send('Success');
         }
     });

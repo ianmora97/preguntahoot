@@ -4,13 +4,15 @@ const app       = express();
 const session   = require('express-session');
 const flash     = require('connect-flash');
 
-//ArreglosUsuarios
+//Variables Globales
+token = {};
+usuarioAnfitrion = {};
 usuarios_juego =[];
 
 //settings
-app.set('port',process.env.PORT || 80);
-app.set('views',path.join(__dirname,'views'));
-app.set('view engine', 'ejs');
+app.set('port',process.env.PORT || 80); //creo el puerto del servidor
+app.set('views',path.join(__dirname,'views')); //creo el path de las views
+app.set('view engine', 'ejs'); //preparo el motor para lectura de .ejs
 
 //Middlewares
 app.use(express.json());
@@ -41,8 +43,10 @@ const io = SocketIo(server);
 
 io.on('connection', (socket) =>{
     console.log('[OK] new connection', socket.id);
-
-    socket.on('chat:message', (data) => {
-        io.sockets.emit('chat:messsage',data);
+    socket.on('unirse-partida', (data) => {
+        io.sockets.emit('unirse-partida',usuarios_juego);
+    });
+    socket.on('get-usuarios', (data) => {
+        io.sockets.emit('get-usuarios',usuarios_juego);
     });
 });
