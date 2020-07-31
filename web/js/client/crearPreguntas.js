@@ -143,6 +143,7 @@ function agregarPregunta() {
         contentType: "application/json",
       }).then((response) => {
         if (response == "Success") {
+          $('#textoPregunta').html("");
           $('#textoPregunta').append(o_texto);
           $('#preguntaInsertadaModal').modal();
           $("#badgeCategoria").fadeOut();
