@@ -1,0 +1,47 @@
+.btn-outline-arte {
+  border-color: red;
+  color: black; }
+
+.btn-outline-arte:hover {
+  background: red;
+  color: white; }
+
+.btn-outline-ciencia {
+  border-color: #28a745;
+  color: black; }
+
+.btn-outline-ciencia:hover {
+  background: #28a745;
+  color: white; }
+
+.btn-outline-deportes {
+  border-color: #fd7e14;
+  color: black; }
+
+.btn-outline-deportes:hover {
+  background: #fd7e14;
+  color: white; }
+
+.btn-outline-entretenimiento {
+  border-color: #e83e8c;
+  color: black; }
+
+.btn-outline-entretenimiento:hover {
+  background: #e83e8c;
+  color: white; }
+
+.btn-outline-geografia {
+  border-color: #007bff;
+  color: black; }
+
+.btn-outline-geografia:hover {
+  background: #007bff;
+  color: white; }
+
+.btn-outline-historia {
+  border-color: yellow;
+  color: black; }
+
+.btn-outline-historia:hover {
+  background: yellow;
+  color: white; }

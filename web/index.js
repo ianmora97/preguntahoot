@@ -28,6 +28,7 @@ app.use(flash());
 app.use(require('./routes/routes'));
 app.use(require('./routes/usuarios'));
 app.use(require('./routes/keyGame'));
+app.use(require('./routes/createQ'));
 
 //static files
 app.use(express.static(path.join(__dirname)))
@@ -42,7 +43,8 @@ const SocketIo = require('socket.io');
 const io = SocketIo(server);
 
 io.on('connection', (socket) =>{
-    console.log('[OK] new connection', socket.id);
+    console.log('[Socket.io] new connection', socket.id);
+
     socket.on('unirse-partida', (data) => {
         io.sockets.emit('unirse-partida',usuarios_juego);
     });

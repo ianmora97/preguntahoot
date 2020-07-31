@@ -1,0 +1,94 @@
+.btn-outline-arte {
+  border-color: red !important;
+  color: black !important;
+  &:hover {
+    background: red !important;
+    color: white !important;
+    > .fas {
+      color: white !important;
+    }
+  }
+  &:focus {
+    outline: 0 !important;
+    box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25) !important;
+  }
+}
+
+.btn-outline-ciencia {
+  border-color: #28a745 !important;
+  color: black !important;
+  &:hover {
+    background: #28a745 !important;
+    color: white !important;
+    > .fas {
+      color: white !important;
+    }
+  }
+  &:focus {
+    outline: 0 !important;
+    box-shadow: 0 0 0 0.2rem rgba(21, 255, 0, 0.25) !important;
+  }
+}
+
+.btn-outline-deportes {
+  border-color: #fd7e14 !important;
+  color: black !important;
+  &:hover {
+    background: #fd7e14 !important;
+    color: white !important;
+    > .fas {
+      color: white !important;
+    }
+  }
+  &:focus {
+    outline: 0 !important;
+    box-shadow: 0 0 0 0.2rem rgba(255, 145, 0, 0.25) !important;
+  }
+}
+
+.btn-outline-entretenimiento {
+  border-color: #e83e8c !important;
+  color: black !important;
+  &:hover {
+    background: #e83e8c !important;
+    color: white !important;
+    > .fas {
+      color: white !important;
+    }
+  }
+  &:focus {
+    outline: 0 !important;
+    box-shadow: 0 0 0 0.2rem rgba(255, 0, 183, 0.25) !important;
+  }
+}
+
+.btn-outline-geografia {
+  border-color: #007bff !important;
+  color: black !important;
+  &:hover {
+    background: #007bff !important;
+    color: white !important;
+    > .fas {
+      color: white !important;
+    }
+  }
+  &:focus {
+    outline: 0 !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 106, 255, 0.25) !important;
+  }
+}
+.btn-outline-historia {
+  border-color: yellow !important;
+  color: black !important;
+  &:hover {
+    background: yellow !important;
+    color: white !important;
+    > .fas {
+      color: white !important;
+    }
+  }
+  &:focus {
+    outline: 0 !important;
+    box-shadow: 0 0 0 0.2rem rgba(251, 255, 0, 0.25) !important;
+  }
+}

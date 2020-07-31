@@ -1,3 +1,75 @@
+.btn-outline-arte {
+  border-color: red !important;
+  color: black !important; }
+  .btn-outline-arte:hover {
+    background: red !important;
+    color: white !important; }
+    .btn-outline-arte:hover > .fas {
+      color: white !important; }
+  .btn-outline-arte:focus {
+    outline: 0 !important;
+    box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25) !important; }
+
+.btn-outline-ciencia {
+  border-color: #28a745 !important;
+  color: black !important; }
+  .btn-outline-ciencia:hover {
+    background: #28a745 !important;
+    color: white !important; }
+    .btn-outline-ciencia:hover > .fas {
+      color: white !important; }
+  .btn-outline-ciencia:focus {
+    outline: 0 !important;
+    box-shadow: 0 0 0 0.2rem rgba(21, 255, 0, 0.25) !important; }
+
+.btn-outline-deportes {
+  border-color: #fd7e14 !important;
+  color: black !important; }
+  .btn-outline-deportes:hover {
+    background: #fd7e14 !important;
+    color: white !important; }
+    .btn-outline-deportes:hover > .fas {
+      color: white !important; }
+  .btn-outline-deportes:focus {
+    outline: 0 !important;
+    box-shadow: 0 0 0 0.2rem rgba(255, 145, 0, 0.25) !important; }
+
+.btn-outline-entretenimiento {
+  border-color: #e83e8c !important;
+  color: black !important; }
+  .btn-outline-entretenimiento:hover {
+    background: #e83e8c !important;
+    color: white !important; }
+    .btn-outline-entretenimiento:hover > .fas {
+      color: white !important; }
+  .btn-outline-entretenimiento:focus {
+    outline: 0 !important;
+    box-shadow: 0 0 0 0.2rem rgba(255, 0, 183, 0.25) !important; }
+
+.btn-outline-geografia {
+  border-color: #007bff !important;
+  color: black !important; }
+  .btn-outline-geografia:hover {
+    background: #007bff !important;
+    color: white !important; }
+    .btn-outline-geografia:hover > .fas {
+      color: white !important; }
+  .btn-outline-geografia:focus {
+    outline: 0 !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 106, 255, 0.25) !important; }
+
+.btn-outline-historia {
+  border-color: yellow !important;
+  color: black !important; }
+  .btn-outline-historia:hover {
+    background: yellow !important;
+    color: white !important; }
+    .btn-outline-historia:hover > .fas {
+      color: white !important; }
+  .btn-outline-historia:focus {
+    outline: 0 !important;
+    box-shadow: 0 0 0 0.2rem rgba(251, 255, 0, 0.25) !important; }
+
 /*!
  * Bootstrap v4.5.0 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors

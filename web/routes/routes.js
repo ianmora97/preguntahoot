@@ -18,4 +18,8 @@ router.get('/game',(req,res)=>{
 router.get('/gameWating',(req,res)=>{
     res.render('gameWating');
 });
+
+router.get('/crearPreguntas',(req,res)=>{
+    res.render('crearPreguntas');
+});
 module.exports = router;
