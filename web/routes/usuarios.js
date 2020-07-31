@@ -33,7 +33,6 @@ router.post('/usuarios/login',(req,res)=>{
 });
 
 router.post('/getUsuarioAnfitrion',(req,res)=>{
-    
     console.log('[OK] Usuario Anfitrion',usuarioAnfitrion);
     res.send(usuarioAnfitrion);
 });
@@ -46,10 +45,10 @@ router.post('/registrarse',(req,res)=>{
     var query = con.query('insert into usuario (nombre,username,clave,rol) values (?,?,?,1)',
     [req.body.nombre, req.body.username, req.body.clave],
     (err,result)=>{
-        if(result.affectedRows == 0){
+        if(err){
             res.send('NotInserted');
         }else{
-            // console.log('Se registro un usuario nuevo',result.affectedRows);
+            console.log('[MYSQL] Se registro un usuario nuevo',result.body.nombre);
             res.send('Success');
         }
     });

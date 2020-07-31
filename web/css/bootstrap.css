@@ -59,10 +59,10 @@
     box-shadow: 0 0 0 0.2rem rgba(0, 106, 255, 0.25) !important; }
 
 .btn-outline-historia {
-  border-color: yellow !important;
+  border-color: #f6de00 !important;
   color: black !important; }
   .btn-outline-historia:hover {
-    background: yellow !important;
+    background: #f6de00 !important;
     color: white !important; }
     .btn-outline-historia:hover > .fas {
       color: white !important; }

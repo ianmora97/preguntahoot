@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname)))
 
 //start the server
 const server = app.listen(app.get('port'), () =>{
-    console.log('[OK] server on port ', app.get('port'));
+    console.log('[NODE] server on port ', app.get('port'));
 });
 
 //webSockets
@@ -43,7 +43,7 @@ const SocketIo = require('socket.io');
 const io = SocketIo(server);
 
 io.on('connection', (socket) =>{
-    console.log('[Socket.io] new connection', socket.id);
+    console.log('[SOCKET] new connection', socket.id);
 
     socket.on('unirse-partida', (data) => {
         io.sockets.emit('unirse-partida',usuarios_juego);

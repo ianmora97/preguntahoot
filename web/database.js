@@ -14,8 +14,7 @@ con.getConnection(function(err) {
         console.log(err);
         return;
     }else{
-        console.log('[OK] DataBase conected');
-        console.log('[OK] Database: preguntados');
+        console.log('[MYSQL] DataBase preguntados is conected');
     }
 });
 module.exports = con;

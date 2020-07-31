@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,27 +14,61 @@
 </head>
 
 <body class="bg-white">
+    <div class="modal fade" id="preguntaInsertadaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header bg-success">
+              <h5 class="modal-title text-white" id="exampleModalLongTitle">Pregunta Agregada</h5>
+              <button type="button text-white" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <span class="text-muted" id="textoPregunta"></span><br>
+                <p>Pregunta agregada correctamente, tu pregunta podria salir ahora dentro del juego.</p>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="modal fade" id="preguntaNoInsertadaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header bg-danger">
+              <h5 class="modal-title text-white" id="exampleModalLongTitle">Pregunta no fue Agregada</h5>
+              <button type="button text-white" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <p>La pregunta no fue agregada, esto se debe a:</p>
+                <ul class="list-group">
+                    <li class="list-group-item">La pregunta ya ha sido añadida anteriormente</li>
+                    <li class="list-group-item">La pregunta no es valida</li>
+                </ul>
+            </div>
+          </div>
+        </div>
+    </div>
     <nav class="navbar bg-light navbar-top navbar-expand navbar-fixed-top" style="height: 62px;" role="navigation">
         <div class="container-fluid">
-            <div class="navbar-brand">
-                <a class="logo" id="asd" href="#">
-                    <img class="mx-2" src="https://www.preguntados.com/compiled/img/willy_footer.png" alt="rompecabezas"
+            <div class="navbar-brand mr-0">
+                <a class="logo" id="asd" href="/">
+                    <img class="" src="https://www.preguntados.com/compiled/img/willy_footer.png" alt="rompecabezas"
                         width="50px" />
                 </a>
             </div>
-            <div class="page-title">
-                <span class="font-1 text-primary" style="font-size: 5.8vw;">Crear Preguntas</span>
+            <div class="page-title text-center">
+                <span class="font-1 text-primary" style="font-size: 1.6em;">Crear Preguntas</span>
             </div>
-            <div class="navbar navbar-right">
+            <div class="navbar navbar-right p-0">
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navSidebar"
                     aria-controls="navSidebar" aria-expanded="false" aria-label="Toggle navigation"
                     data-original-title="" title="">
                     <span class="fa fa-bars" data-original-title="" title=""></span>
                 </button>
 
-                <a class="nav-link front-end" title="" href="doGame" target="_blank"
-                data-original-title="Jugar">
-                <i class="fas fa-gamepad color:black;" style="height: 20px;font-size: 20px;margin: 10px 0 0 0;"></i>
+                <a class="nav-link front-end px-0" title="" href="doGame" target="_blank" data-original-title="Jugar">
+                    <i class="fas fa-gamepad color:black;" style="height: 20px;font-size: 20px;margin: 0;"></i>
                 </a>
             </div>
         </div>
@@ -44,118 +79,139 @@
     <div class="container mt-4">
         <nav class="mb-3">
             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                    data-request="onSave" data-progress-indicator="Saving..." aria-controls="nav-profile"
+                <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
+                    role="tab" data-request="onSave" data-progress-indicator="Saving..." aria-controls="nav-profile"
                     aria-selected="false"><i class="fas fa-plus"></i> Crear Pregunta</a>
             </div>
         </nav>
-        <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                <div class="row-fluid mb-3">
-                    <div class="form-widget">
-                        <div id="form-outside-tabs" class="">
-                            <div class="form-fields">
-                                <div class="form-group w-100">
-                                    <label for="">Texto de la pregunta</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend w-100">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-question-circle"></i>
+        <form action="" id="form">
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-profile" role="tabpanel"
+                    aria-labelledby="nav-profile-tab">
+                    <div class="row-fluid mb-3">
+                        <div class="form-widget">
+                            <div id="form-outside-tabs" class="">
+                                <div class="form-fields">
+                                    <div class="form-group w-100">
+                                        <label for="">Texto de la pregunta</label>
+                                        <small id="texto-error" style="display: none;" class="text-danger">No puede dejar espacios en blanco</small>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend w-100">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-question-circle"></i>
+                                                </div>
+                                                <input id="texto" type="text" class="form-control"
+                                                    aria-label="Text input with checkbox" autocomplete="false">
                                             </div>
-                                            <input id="texto" type="text" class="form-control"
+                                        </div>
+                                    </div>
+                                    <div class="form-group w-100">
+                                        <label for="">Respuesta A</label>
+                                        <small id="resA-error" style="display: none;" class="text-danger">No puede dejar espacios en blanco</small>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <input onchange="correctaRadio('a')" type="radio"
+                                                        name="respuestaCorrecta" value="a">
+                                                </div>
+                                            </div>
+                                            <input id="resA" type="text" class="form-control"
                                                 aria-label="Text input with checkbox" autocomplete="false">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group w-100">
-                                    <label for="">Respuesta A</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <input onchange="correctaRadio('a')" type="radio" name="respuestaCorrecta"
-                                                    value="a">
+                                    <div class="form-group w-100">
+                                        <label for="">Respuesta B</label>
+                                        <small id="resB-error" style="display: none;" class="text-danger">No puede dejar espacios en blanco</small>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <input onchange="correctaRadio('b')" type="radio"
+                                                        name="respuestaCorrecta" value="b">
+                                                </div>
                                             </div>
+                                            <input id="resB" type="text" class="form-control"
+                                                aria-label="Text input with checkbox" autocomplete="false">
                                         </div>
-                                        <input id="resA" type="text" class="form-control"
-                                            aria-label="Text input with checkbox" autocomplete="false">
                                     </div>
-                                </div>
-                                <div class="form-group w-100">
-                                    <label for="">Respuesta B</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <input onchange="correctaRadio('b')" type="radio" name="respuestaCorrecta"
-                                                    value="b">
+                                    <div class="form-group w-100">
+                                        <label for="">Respuesta C</label>
+                                        <small id="resC-error" style="display: none;" class="text-danger">No puede dejar espacios en blanco</small>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <input onchange="correctaRadio('c')" type="radio"
+                                                        name="respuestaCorrecta" value="c">
+                                                </div>
                                             </div>
+                                            <input id="resC" type="text" class="form-control"
+                                                aria-label="Text input with checkbox" autocomplete="false">
                                         </div>
-                                        <input id="resB" type="text" class="form-control"
-                                            aria-label="Text input with checkbox" autocomplete="false">
                                     </div>
-                                </div>
-                                <div class="form-group w-100">
-                                    <label for="">Respuesta C</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <input onchange="correctaRadio('c')" type="radio" name="respuestaCorrecta" value="c">
+                                    <div class="form-group w-100">
+                                        <label for="">Respuesta D</label>
+                                        <small id="resD-error" style="display: none;" class="text-danger">No puede dejar espacios en blanco</small>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <input onchange="correctaRadio('d')" type="radio"
+                                                        name="respuestaCorrecta" value="d">
+                                                </div>
                                             </div>
+                                            <input id="resD" type="text" class="form-control"
+                                                aria-label="Text input with checkbox" autocomplete="false">
                                         </div>
-                                        <input id="resC" type="text" class="form-control"
-                                            aria-label="Text input with checkbox" autocomplete="false">
                                     </div>
-                                </div>
-                                <div class="form-group w-100">
-                                    <label for="">Respuesta D</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <input onchange="correctaRadio('d')" type="radio" name="respuestaCorrecta" value="d">
-                                            </div>
-                                        </div>
-                                        <input id="resD" type="text" class="form-control"
-                                            aria-label="Text input with checkbox" autocomplete="false">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Seleccione Categoria</label>
-                                    <span class="badge badge-light" id="badgeCategoria"
+                                    <div class="form-group">
+                                        <label for="">Seleccione Categoria</label>
+                                        <small id="categoria-error" style="display: none;" class="text-danger">Debe seleccionar una categoria</small>
+                                        <span class="badge badge-light" id="badgeCategoria"
                                             style="font-size: 15px; padding:10px; margin:0 10px; display: none;"></span>
-                                    <div class="my-2">
-                                        <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
-                                            <div class="container p-0" aria-labelledby="dropdownMenu2">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <button class="btn btn-outline-arte btn-block" type="button" id="ca1">
-                                                            <i class="fas fa-paint-brush" style="color:red;"></i> Arte</button>
+                                        <div class="my-2">
+                                            <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+                                                <div class="container p-0" aria-labelledby="dropdownMenu2">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <button class="btn btn-outline-arte btn-block" type="button"
+                                                                id="ca1">
+                                                                <i class="fas fa-paint-brush" style="color:red;"></i>
+                                                                Arte</button>
+                                                        </div>
+                                                        <div class="col">
+                                                            <button class="btn btn-outline-ciencia btn-block"
+                                                                type="button" id="ca2">
+                                                                <i class="fas fa-flask" style="color:#28a745;"></i>
+                                                                Ciencia</button>
+                                                        </div>
                                                     </div>
-                                                    <div class="col">
-                                                        <button class="btn btn-outline-ciencia btn-block" type="button" id="ca2">
-                                                            <i class="fas fa-flask" style="color:#28a745;"></i> Ciencia</button>
+                                                    <div class="row mt-4">
+                                                        <div class="col">
+                                                            <button class="btn btn-outline-deportes btn-block"
+                                                                type="button" id="ca3">
+                                                                <i class="fas fa-football-ball"
+                                                                    style="color:#fd7e14;"></i>
+                                                                Deportes</button>
+                                                        </div>
+                                                        <div class="col">
+                                                            <button class="btn btn-outline-entretenimiento btn-block"
+                                                                type="button" id="ca4">
+                                                                <i class="fas fa-film" style="color:#e83e8c;"></i>
+                                                                Entretenimiento</button>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="row mt-4">
-                                                    <div class="col">
-                                                    <button class="btn btn-outline-deportes btn-block" type="button" id="ca3">
-                                                        <i class="fas fa-football-ball" style="color:#fd7e14;"></i>
-                                                        Deportes</button>
-                                                    </div>
-                                                    <div class="col">
-                                                    <button class="btn btn-outline-entretenimiento btn-block" type="button" id="ca4">
-                                                        <i class="fas fa-film" style="color:#e83e8c;"></i>
-                                                        Entretenimiento</button>
-                                                    </div>
-                                                </div>
-                                                <div class="row mt-4">
-                                                    <div class="col">
-                                                    <button class="btn btn-outline-geografia btn-block" type="button" id="ca5">
-                                                        <i class="fas fa-globe-americas" style="color:#007bff;"></i>
-                                                        Geografia</button>
-                                                    </div>
-                                                    <div class="col">
-                                                    <button class="btn btn-outline-historia btn-block" type="button" id="ca6">
-                                                        <i class="fas fa-book" style="color:yellow;"></i>
-                                                        Historia</button>
+                                                    <div class="row mt-4">
+                                                        <div class="col">
+                                                            <button class="btn btn-outline-geografia btn-block"
+                                                                type="button" id="ca5">
+                                                                <i class="fas fa-globe-americas"
+                                                                    style="color:#007bff;"></i>
+                                                                Geografia</button>
+                                                        </div>
+                                                        <div class="col">
+                                                            <button class="btn btn-outline-historia btn-block"
+                                                                type="button" id="ca6">
+                                                                <i class="fas fa-book" style="color:#f6de00;"></i>
+                                                                Historia</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -164,14 +220,14 @@
                                 </div>
                             </div>
                         </div>
+                        <a class="btn btn-success text-white btn-lg btn-block" data-request="onSave"
+                            data-progress-indicator="Saving..." id="agregar" tabindex="0" data-original-title=""
+                            title="">
+                            <i class="fa fa-save"></i> Agregar Pregunta</a>
                     </div>
-                    <a class="btn btn-success text-white btn-lg btn-block" data-request="onSave"
-                    data-progress-indicator="Saving..." id="agregar" tabindex="0" data-original-title=""
-                    title="">
-                    <i class="fa fa-save"></i> Agregar Pregunta</a>  
                 </div>
             </div>
-        </div>
+        </form>
     </div>
     <script src="js/jq-bs-bundle.js"></script>
     <script src="js/client/crearPreguntas.js"></script>

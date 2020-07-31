@@ -5,10 +5,14 @@ function loaded(event) {
 function events(event) {
   mostrarCategoriaAgregar();
   agregarPregunta();
+  checkKeyPressedOnInputs();
 }
-
+function cerrarAlerta() {
+  $("#alertaAgregarPregunta").fadeOut();
+}
 function mostrarCategoriaAgregar() {
   $("#ca1").click(function () {
+    $("#categoria-error").hide();
     $("#badgeCategoria").fadeIn();
     $("#badgeCategoria").text(" Arte");
     $("#badgeCategoria").prepend(
@@ -16,6 +20,7 @@ function mostrarCategoriaAgregar() {
     );
   });
   $("#ca2").click(function () {
+    $("#categoria-error").hide();
     $("#badgeCategoria").fadeIn();
     $("#badgeCategoria").text(" Ciencia");
     $("#badgeCategoria").prepend(
@@ -23,6 +28,7 @@ function mostrarCategoriaAgregar() {
     );
   });
   $("#ca3").click(function () {
+    $("#categoria-error").hide();
     $("#badgeCategoria").fadeIn();
     $("#badgeCategoria").text(" Deportes");
     $("#badgeCategoria").prepend(
@@ -30,6 +36,7 @@ function mostrarCategoriaAgregar() {
     );
   });
   $("#ca4").click(function () {
+    $("#categoria-error").hide();
     $("#badgeCategoria").fadeIn();
     $("#badgeCategoria").text(" Entretenimiento");
     $("#badgeCategoria").prepend(
@@ -37,6 +44,7 @@ function mostrarCategoriaAgregar() {
     );
   });
   $("#ca5").click(function () {
+    $("#categoria-error").hide();
     $("#badgeCategoria").fadeIn();
     $("#badgeCategoria").text(" Geografia");
     $("#badgeCategoria").prepend(
@@ -44,10 +52,11 @@ function mostrarCategoriaAgregar() {
     );
   });
   $("#ca6").click(function () {
+    $("#categoria-error").hide();
     $("#badgeCategoria").fadeIn();
     $("#badgeCategoria").text(" Historia");
     $("#badgeCategoria").prepend(
-      '<i class="fas fa-book" style="color:yellow;"></i>'
+      '<i class="fas fa-book" style="color:#f6de00;"></i>'
     );
   });
 }
@@ -67,99 +76,179 @@ function categoriaToInt(categoria) {
       return 6;
   }
 }
-var notificaciones = [];
-function agregarPregunta() {
-  $("#agregar").click(function () {
-    var categoria = $("#badgeCategoria").text();
-    categoria = categoria.replace(/ /g, "");
-    categoria = categoriaToInt(categoria);
-    var o_texto = $("#texto").val();
-    var o_resA = $("#resA").val();
-    var o_resB = $("#resB").val();
-    var o_resC = $("#resC").val();
-    var o_resD = $("#resD").val();
-    var OpSelected = $("[name*=respuestaCorrecta]");
+function validateForm() {
+  var categoria = $("#badgeCategoria").text();
+  categoria = categoria.replace(/ /g, "");
+  var o_texto = $("#texto").val();
+  var o_resA = $("#resA").val();
+  var o_resB = $("#resB").val();
+  var o_resC = $("#resC").val();
+  var o_resD = $("#resD").val();
 
-    var o_correcta;
-    for (let i = 0; i < OpSelected.length; i++) {
-      if (OpSelected[i].checked) {
-        o_correcta = OpSelected[i].value;
-      }
+  var OpSelected = $("[name*=respuestaCorrecta]");
+
+  var o_correcta = "";
+  for (let i = 0; i < OpSelected.length; i++) {
+    if (OpSelected[i].checked) {
+      o_correcta = OpSelected[i].value;
     }
-    var pregunta = {
-      texto: o_texto,
-      respuestaA: o_resA,
-      respuestaB: o_resB,
-      respuestaC: o_resC,
-      respuestaD: o_resD,
-      correcta: o_correcta,
-      idCategoria: categoria,
-    };
-    var date = new Date();
+  }
+  if (o_texto == "" || o_resA == "" || o_resB == "" || o_resC == "" || o_resD == "") { // la pregunta o respuestas estan vacias
+    console.log('Respuestas Vacias');
+    return false;
+  }
+  else if (categoria == "" || o_correcta == "") { //la categoria o la respuesta correcta estan vacias
+    console.log('Respuestas Vacias');
+    return false;
+  }
+  console.log('Respuestas Llena');
+  return true;
+}
+function agregarPregunta() {
+  $("#agregar").click(function () {    
+    if (validateForm()) {
+      var categoria = $("#badgeCategoria").text();
+      categoria = categoria.replace(/ /g, "");
+      categoria = categoriaToInt(categoria);
+      var o_texto = $("#texto").val();
+      var o_resA = $("#resA").val();
+      var o_resB = $("#resB").val();
+      var o_resC = $("#resC").val();
+      var o_resD = $("#resD").val();
 
-    var minutes = date.getMinutes();
-    var hour = date.getHours();
+      var OpSelected = $("[name*=respuestaCorrecta]");
+      console.log(OpSelected);
 
-    var hora = hour + ":" + minutes;
-    var notificacion = {
-      fecha: hora,
-      titulo: "Pregunta",
-      texto: "Se agrego una pregunta",
-    };
-    notificaciones.push(notificacion);
-    $.ajax({
-      type: "POST",
-      url: "addPregunta",
-      data: JSON.stringify(pregunta),
-      contentType: "application/json",
-    }).then( (response) => {
-        // $("#notificaciones").append(
-        //   '<li class="menu-item">' +
-        //     '<a href="#" class="menu-link"' +
-        //     'data-original-title="" title="">' +
-        //     '<div class="menu-item-meta"><b>Pregunta</b><br>Se agrego una pregunta</div>' +
-        //     '<span class="small menu-item-meta text-muted" data-original-title=""' +
-        //     'title=""> ' +
-        //     hora +
-        //     "</span>" +
-        //     "</a>" +
-        //     "</li>" +
-        //     '<li class="divider"></li>'
-        // );
+      var preguntaCorrectaCheckbox;
+      var o_correcta;
+      for (let i = 0; i < OpSelected.length; i++) {
+        if (OpSelected[i].checked) {
+          o_correcta = OpSelected[i].value;
+          preguntaCorrectaCheckbox = OpSelected[i];
+        }
+      }
+      var pregunta = {
+        texto: o_texto,
+        respuestaA: o_resA,
+        respuestaB: o_resB,
+        respuestaC: o_resC,
+        respuestaD: o_resD,
+        correcta: o_correcta,
+        idCategoria: categoria,
+      };
+      $.ajax({
+        type: "POST",
+        url: "addPregunta",
+        data: JSON.stringify(pregunta),
+        contentType: "application/json",
+      }).then((response) => {
+        if (response == "Success") {
+          $('#textoPregunta').append(o_texto);
+          $('#preguntaInsertadaModal').modal();
+          $("#badgeCategoria").fadeOut();
+          $("#texto").val("");
+          $("#resA").val("");
+          $("#resB").val("");
+          $("#resC").val("");
+          $("#resD").val("");
+          uncheckCorrect();
 
-        // $("#notificacionesToast").html("");
-        // $("#notificacionesToast").append(
-        //   '<div class="toast fade" data-delay="5000" id="newToast" role="alert" aria-live="assertive" aria-atomic="true">' +
-        //     '<div class="toast-header bg-light">' +
-        //     '<strong class="mr-auto"><i class="fas fa-question-circle text-white bg-success p-1 rounded"></i> Pregunta a&ntilde;adida correctamente</strong>' +
-        //     '<small class="text-muted text-white">just now</small>' +
-        //     '<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">' +
-        //     '<span aria-hidden="true">&times;</span>' +
-        //     "</button>" +
-        //     "</div>" +
-        //     '<div class="toast-body">' +
-        //     +o_texto +
-        //     "</div>" +
-        //     "</div>"
-        // );
-        // $(".toast").toast("show");
-        // $("#badgeCategoria").fadeOut();
-        // $("#texto").val("");
-        // $("#resA").val("");
-        // $("#resB").val("");
-        // $("#resC").val("");
-        // $("#resD").val("");
-        if(response == "Success"){
           console.log('Pregunta Insertada');
+        }f6de00
+        if(response == "NotInserted"){
+          $('#preguntaNoInsertadaModal').modal();
         }
       },
-      (error) => {
-        
-      }
-    );
+        (error) => {
+          alert('Ocurrio un Error en el servidor');
+        }
+      );
+    }
+    else{
+      showCheckErrorsEach();
+    }
   });
 }
+function checkKeyPressedOnInputs (){
+  $("#text").keyup(function () {
+    $('#texto-error').hide();
+    $('#texto').css('box-shadow','none');
+  });
+  $("#resA").keyup(function () {
+    $('#resA-error').hide();
+    $('#resA').css('box-shadow','none');
+  });
+  $("#resB").keyup(function () {
+    $('#resB-error').hide();
+    $('#resB').css('box-shadow','none');
+  });
+  $("#resC").keyup(function () {
+    $('#resC-error').hide();
+    $('#resC').css('box-shadow','none');
+  });
+  $("#resD").keyup(function () {
+    $('#resD-error').hide();
+    $('#resD').css('box-shadow','none');
+  });
+}
+function showCheckErrorsEach(){
+  var categoria = $("#badgeCategoria").text();
+  categoria = categoria.replace(/ /g, "");
+  var o_texto = $("#texto").val();
+  var o_resA = $("#resA").val();
+  var o_resB = $("#resB").val();
+  var o_resC = $("#resC").val();
+  var o_resD = $("#resD").val();
+
+  var OpSelected = $("[name*=respuestaCorrecta]");
+
+  var o_correcta = "";
+  for (let i = 0; i < OpSelected.length; i++) {
+    if (OpSelected[i].checked) {
+      o_correcta = OpSelected[i].value;
+    }
+  }
+  if(o_texto == ""){
+    $('#texto-error').show();
+    $('#texto').css('box-shadow','0 0 0 0.2rem #f25d5d');
+  }
+  if(o_resA == ""){
+    $('#resA-error').show();
+    $('#resA').css('box-shadow','0 0 0 0.2rem #f25d5d');
+  }
+  if(o_resB == ""){
+    $('#resB-error').show();
+    $('#resB').css('box-shadow','0 0 0 0.2rem #f25d5d');
+  }
+  if(o_resC == ""){
+    $('#resC-error').show();
+    $('#resC').css('box-shadow','0 0 0 0.2rem #f25d5d');
+  }
+  if(o_resD == ""){
+    $('#resD-error').show();
+    $('#resD').css('box-shadow','0 0 0 0.2rem #f25d5d');
+  }
+  if(categoria == ""){
+    $('#categoria-error').show();
+  }
+  if(o_correcta == ""){
+    $('[name*=respuestaCorrecta]').css('box-shadow','0 0 0 0.2rem #f25d5d');
+  }
+}
+function uncheckCorrect() {
+  $("#resA").css("box-shadow", "none");
+  $("#resB").css("box-shadow", "none");
+  $("#resC").css("box-shadow", "none");
+  $("#resD").css("box-shadow", "none");
+  var OpSelected = $("[name*=respuestaCorrecta]");
+  for (let i = 0; i < OpSelected.length; i++) {
+    if (OpSelected[i].checked) {
+      OpSelected[i].checked = false;
+    }
+  }
+}
 function correctaRadio(i) {
+  $('[name*=respuestaCorrecta]').css('box-shadow','none');
   switch (i) {
     case 'a':
       $("#resA").css("box-shadow", "0 0 0 0.2rem #61b55d");
@@ -178,7 +267,7 @@ function correctaRadio(i) {
       $("#resB").css("box-shadow", "none");
       $("#resA").css("box-shadow", "none");
       $("#resD").css("box-shadow", "none");
-     break;
+      break;
     case 'd':
       $("#resD").css("box-shadow", "0 0 0 0.2rem #61b55d");
       $("#resB").css("box-shadow", "none");
