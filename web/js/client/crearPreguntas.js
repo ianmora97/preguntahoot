@@ -101,11 +101,26 @@ function validateForm() {
     console.log('Respuestas Vacias');
     return false;
   }
+  if(resAreEquals(o_resA,o_resB,o_resC,o_resD)){
+    $('#respuestasIguales').show();
+    return false;
+  }
   console.log('Respuestas Llena');
   return true;
 }
+function resAreEquals(a,b,c,d){
+  if(a != b && a != c && a != d){
+    if(b != c && b != d){
+      if(c != d){
+        return false;
+      }
+    }
+  }
+  return true;
+}
 function agregarPregunta() {
-  $("#agregar").click(function () {    
+  $("#agregar").click(function () {
+    $('#blurFade,#loader').show();
     if (validateForm()) {
       var categoria = $("#badgeCategoria").text();
       categoria = categoria.replace(/ /g, "");
@@ -115,16 +130,12 @@ function agregarPregunta() {
       var o_resB = $("#resB").val();
       var o_resC = $("#resC").val();
       var o_resD = $("#resD").val();
-
       var OpSelected = $("[name*=respuestaCorrecta]");
-      console.log(OpSelected);
 
-      var preguntaCorrectaCheckbox;
       var o_correcta;
       for (let i = 0; i < OpSelected.length; i++) {
         if (OpSelected[i].checked) {
           o_correcta = OpSelected[i].value;
-          preguntaCorrectaCheckbox = OpSelected[i];
         }
       }
       var pregunta = {
@@ -153,9 +164,8 @@ function agregarPregunta() {
           $("#resC").val("");
           $("#resD").val("");
           uncheckCorrect();
-
           console.log('Pregunta Insertada');
-        }f6de00
+        }
         if(response == "NotInserted"){
           $('#preguntaNoInsertadaModal').modal();
         }
@@ -168,6 +178,7 @@ function agregarPregunta() {
     else{
       showCheckErrorsEach();
     }
+    $('#blurFade,#loader').hide();
   });
 }
 function checkKeyPressedOnInputs (){
@@ -178,18 +189,22 @@ function checkKeyPressedOnInputs (){
   $("#resA").keyup(function () {
     $('#resA-error').hide();
     $('#resA').css('box-shadow','none');
+    $('#respuestasIguales').hide();
   });
   $("#resB").keyup(function () {
     $('#resB-error').hide();
     $('#resB').css('box-shadow','none');
+    $('#respuestasIguales').hide();
   });
   $("#resC").keyup(function () {
     $('#resC-error').hide();
     $('#resC').css('box-shadow','none');
+    $('#respuestasIguales').hide();
   });
   $("#resD").keyup(function () {
     $('#resD-error').hide();
     $('#resD').css('box-shadow','none');
+    $('#respuestasIguales').hide();
   });
 }
 function showCheckErrorsEach(){
