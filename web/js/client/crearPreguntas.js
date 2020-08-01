@@ -6,6 +6,17 @@ function events(event) {
   mostrarCategoriaAgregar();
   agregarPregunta();
   checkKeyPressedOnInputs();
+  ocultarPops();
+  $('#modalInstrucciones').modal();
+
+  $('[data-popname="respuestaCorrectaPop"]').tooltip({
+    trigger: 'manual',
+    offset: '40px 2px'
+  });
+  $('[data-toggle="tooltip"]').tooltip('show');
+}
+function ocultarPops(){
+
 }
 function cerrarAlerta() {
   $("#alertaAgregarPregunta").fadeOut();
@@ -248,7 +259,7 @@ function showCheckErrorsEach(){
     $('#categoria-error').show();
   }
   if(o_correcta == ""){
-    $('[name*=respuestaCorrecta]').css('box-shadow','0 0 0 0.2rem #f25d5d');
+    $('[data-popname="respuestaCorrectaPop"]').css('box-shadow','0 0 0 0.2rem #f25d5d');
   }
 }
 function uncheckCorrect() {
@@ -265,6 +276,9 @@ function uncheckCorrect() {
 }
 function correctaRadio(i) {
   $('[name*=respuestaCorrecta]').css('box-shadow','none');
+  $('[data-toggle="tooltip"]').tooltip('hide');
+  $('[data-popname="respuestaCorrectaPop"]').css('box-shadow','none');
+  $('[data-form="inputs"]').removeClass('mb-5');
   switch (i) {
     case 'a':
       $("#resA").css("box-shadow", "0 0 0 0.2rem #61b55d");

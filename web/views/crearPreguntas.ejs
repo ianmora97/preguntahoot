@@ -16,6 +16,68 @@
 <body class="bg-white">
     <div class="blurFade" id="blurFade"></div>
     <div class="loader" id="loader"></div>
+
+    <div class="modal" id="modalInstrucciones" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-header bg-success">
+              <h5 class="modal-title text-white">Instrucciones</h5>
+              <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group">
+                    <li class="list-group-item">1. Debe ingresar una pregunta en el campo "Texto de la pregunta"</li>
+                    <li class="list-group-item">2. Debe ingresar las respuestas correspondientes A,B,C,D</li>
+                    <li class="list-group-item">
+                        3. Debe Seleccionar la respuesta correcta seleccionando el circulo izquierdo a la pregunta correcta
+                        <div class="input-group" style="margin-top: 5px;">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text" >
+                                    <input type="radio" checked>
+                                </div>
+                            </div>
+                            <input class="w-75" type="text" value="Argentina">
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        4. Selecciona la categoria a la que pertenece la pregunta
+                        <div class="container w-25">
+                            <div class="row">
+                                <div class="col-sm-4 mx-auto">
+                                    <i class="fas fa-paint-brush" style="color:red;"></i>
+                                </div>
+                                <div class="col-sm-4 mx-auto">
+                                    <i class="fas fa-flask" style="color:#28a745;"></i>
+                                </div>
+                                <div class="col-sm-4 mx-auto">
+                                    <i class="fas fa-football-ball" style="color:#fd7e14;"></i>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4 mx-auto">
+                                    <i class="fas fa-film" style="color:#e83e8c;"></i>
+                                </div>
+                                <div class="col-sm-4 mx-auto">
+                                    <i class="fas fa-globe-americas" style="color:#007bff;"></i>
+                                </div>
+                                <div class="col-sm-4 mx-auto">
+                                    <i class="fas fa-book" style="color:#f6de00;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">5. Una vez ingresado todos los datos, envia la pregunta
+                        <a class="btn btn-success text-white">
+                            <i class="fa fa-save"></i> Agregar Pregunta
+                        </a>
+                    </li>
+                </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     <div class="modal fade" id="preguntaInsertadaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
           <div class="modal-content">
@@ -108,12 +170,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group w-100">
+                                    <div class="form-group w-100 mb-5" data-form="inputs" style="transition:all 1s;">
                                         <label for="">Respuesta A</label>
                                         <small id="resA-error" style="display: none;" class="text-danger">No puede dejar espacios en blanco</small>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <div class="input-group-text">
+                                                <div class="input-group-text" data-popname="respuestaCorrectaPop"
+                                                data-toggle="tooltip" data-placement="bottom" title="Respuesta Correcta">
                                                     <input onchange="correctaRadio('a')" type="radio"
                                                         name="respuestaCorrecta" value="a">
                                                 </div>
@@ -122,12 +185,13 @@
                                                 aria-label="Text input with checkbox" autocomplete="false">
                                         </div>
                                     </div>
-                                    <div class="form-group w-100">
+                                    <div class="form-group w-100 mb-5" data-form="inputs" style="transition:all 1s;">
                                         <label for="">Respuesta B</label>
                                         <small id="resB-error" style="display: none;" class="text-danger">No puede dejar espacios en blanco</small>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <div class="input-group-text">
+                                                <div class="input-group-text" data-popname="respuestaCorrectaPop"
+                                                data-toggle="tooltip" data-placement="bottom" title="Respuesta Correcta"">
                                                     <input onchange="correctaRadio('b')" type="radio"
                                                         name="respuestaCorrecta" value="b">
                                                 </div>
@@ -136,12 +200,13 @@
                                                 aria-label="Text input with checkbox" autocomplete="false">
                                         </div>
                                     </div>
-                                    <div class="form-group w-100">
+                                    <div class="form-group w-100 mb-5" data-form="inputs" style="transition:all 1s;">
                                         <label for="">Respuesta C</label>
                                         <small id="resC-error" style="display: none;" class="text-danger">No puede dejar espacios en blanco</small>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <div class="input-group-text">
+                                                <div class="input-group-text" data-popname="respuestaCorrectaPop"
+                                                data-toggle="tooltip" data-placement="bottom" title="Respuesta Correcta"">
                                                     <input onchange="correctaRadio('c')" type="radio"
                                                         name="respuestaCorrecta" value="c">
                                                 </div>
@@ -150,12 +215,13 @@
                                                 aria-label="Text input with checkbox" autocomplete="false">
                                         </div>
                                     </div>
-                                    <div class="form-group w-100">
+                                    <div class="form-group w-100 mb-5" data-form="inputs" style="transition:all 1s;">
                                         <label for="">Respuesta D</label>
                                         <small id="resD-error" style="display: none;" class="text-danger">No puede dejar espacios en blanco</small>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <div class="input-group-text">
+                                                <div class="input-group-text" data-popname="respuestaCorrectaPop"
+                                                data-toggle="tooltip" data-placement="bottom" title="Respuesta Correcta"">
                                                     <input onchange="correctaRadio('d')" type="radio"
                                                         name="respuestaCorrecta" value="d">
                                                 </div>

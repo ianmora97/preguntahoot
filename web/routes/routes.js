@@ -22,4 +22,9 @@ router.get('/gameWating',(req,res)=>{
 router.get('/crearPreguntas',(req,res)=>{
     res.render('crearPreguntas');
 });
+
+router.get('/play',(req,res)=>{
+    res.render('play');
+});
+
 module.exports = router;
