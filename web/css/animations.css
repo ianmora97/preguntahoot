@@ -159,3 +159,64 @@
   80%{transform:rotate(270deg)}
   100%{transform:rotate(330deg);}
 }
+
+/*-------------in game animation-----------*/
+.girarRuleta-arte{
+  -webkit-animation: girarRuleta-arte 5s cubic-bezier(0.19, 1, 0.22, 1) 1;
+  -moz-animation: girarRuleta-arte 5s cubic-bezier(0.19, 1, 0.22, 1) 1;
+  animation: girarRuleta-arte 5s cubic-bezier(0.19, 1, 0.22, 1) 1;
+}
+@keyframes girarRuleta-arte{
+  0% {transform: rotate(0);}
+  100% {transform: rotate(1480deg);}
+}
+
+.girarRuleta-historia{
+  -webkit-animation: girarRuleta-historia 5s cubic-bezier(0.19, 1, 0.22, 1) 1;
+  -moz-animation: girarRuleta-historia 5s cubic-bezier(0.19, 1, 0.22, 1) 1;
+  animation: girarRuleta-historia 5s cubic-bezier(0.19, 1, 0.22, 1) 1;
+}
+@keyframes girarRuleta-historia{
+  0% {transform: rotate(0);}
+  100% {transform: rotate(1420deg);}
+}
+
+.girarRuleta-ciencia{
+  -webkit-animation: girarRuleta-ciencia 5s cubic-bezier(0.19, 1, 0.22, 1) 1;
+  -moz-animation: girarRuleta-ciencia 5s cubic-bezier(0.19, 1, 0.22, 1) 1;
+  animation: girarRuleta-ciencia 5s cubic-bezier(0.19, 1, 0.22, 1) 1;
+}
+@keyframes girarRuleta-ciencia{
+  0% {transform: rotate(0);}
+  100% {transform: rotate(1360deg);}
+}
+
+.girarRuleta-geografia{
+  -webkit-animation: girarRuleta-geografia 5s cubic-bezier(0.19, 1, 0.22, 1) 1;
+  -moz-animation: girarRuleta-geografia 5s cubic-bezier(0.19, 1, 0.22, 1) 1;
+  animation: girarRuleta-geografia 5s cubic-bezier(0.19, 1, 0.22, 1) 1;
+}
+@keyframes girarRuleta-geografia{
+  0% {transform: rotate(0);}
+  100% {transform: rotate(1660deg);}
+}
+
+.girarRuleta-entretenimiento{
+  -webkit-animation: girarRuleta-entretenimiento 5s cubic-bezier(0.19, 1, 0.22, 1) 1;
+  -moz-animation: girarRuleta-entretenimiento 5s cubic-bezier(0.19, 1, 0.22, 1) 1;
+  animation: girarRuleta-entretenimiento 5s cubic-bezier(0.19, 1, 0.22, 1) 1;
+}
+@keyframes girarRuleta-entretenimiento{
+  0% {transform: rotate(0);}
+  100% {transform: rotate(1600deg);}
+}
+
+.girarRuleta-deportes{
+  -webkit-animation: girarRuleta-deportes 5s cubic-bezier(0.19, 1, 0.22, 1) 1;
+  -moz-animation: girarRuleta-deportes 5s cubic-bezier(0.19, 1, 0.22, 1) 1;
+  animation: girarRuleta-deportes 5s cubic-bezier(0.19, 1, 0.22, 1) 1;
+}
+@keyframes girarRuleta-deportes{
+  0% {transform: rotate(0);}
+  100% {transform: rotate(1550deg);}
+}

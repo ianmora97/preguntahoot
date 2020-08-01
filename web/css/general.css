@@ -172,6 +172,9 @@ a {
   -moz-animation: spin 10s cubic-bezier(0.19, 1, 0.22, 1) infinite;
   animation: spin 10s cubic-bezier(0.19, 1, 0.22, 1) infinite;
 }
+.girarRuleta{
+  transform: rotate(360deg);
+}
 @keyframes spin{
   0% {transform: rotate(0);}
   67% {transform: rotate(0);}
@@ -207,6 +210,7 @@ a {
 	-moz-animation: animateCloud 30s linear infinite;
 	animation: animateCloud 30s linear infinite;
 }
+
 @keyframes spinWatingGame{
   100% {transform: rotate(360deg);}
 }
