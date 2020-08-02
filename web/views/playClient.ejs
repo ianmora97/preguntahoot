@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/css/play.css" />
     <link rel="stylesheet" href="/css/general.css" />
     <link rel="stylesheet" href="/css/animations.css" />
+    <!-- Bundle JQuery Bootstrap -->
     <script src="/js/jq-bs-bundle.js"></script>
   </head>
   <body class="bg-info" style="overflow: hidden;">
@@ -75,20 +76,13 @@
         <div class="display-5 font-1 text-center align-middle" id="reloj" style="font-size: 25vh;"></div>
     </div>
     <div class="container" id="ruletaGirarScreen" style="display: none;">
-        <div class="row mt-5" style="width:320px;">
+        <div class="" style="z-index: -10; top: 10%; ">
             <img src="images/ruleta1.png" 
             class="mx-auto" 
             id="ruletaImg" 
             style="position: absolute;width: 60%;top: 18vw;left: 20%;">
             <img src="images/ruleta-center.png" id="girarboton"
             style="position: absolute;z-index: 2;width: 20%;top: 36vw;left: 40%;">
-        </div>
-        <div class="row mt-5" id="listaUsuariosConectados">
-            <div class="container" style="position: relative;top: 30%;">
-                <ul class="list-group" id="usuariosEnSala">
-                  
-                </ul>
-            </div>
         </div>
     </div>
     <div class="container" id="juegoScreen" style="display: none;">

@@ -4,26 +4,12 @@ function loaded(event) {
 }
 
 function events(event) {
-    //getUsuario();
-    //getKeyGame();
+    begin();
     recibir();
 }
-function crearPartida() {
-    $("#keyGame").click(function () {
-        $.ajax({
-            type: "POST",
-            url: "api/dash/loginCrear",
-            data: JSON.stringify(usuario),
-            contentType: "application/json"
-        }).then(
-                (usuario) => {
-            location.href = "game.html";
-        },
-                (error) => {
-            alert(error.status);
-        }
-        );
-
+function begin(){
+    $('#play').on('click',function(){
+        location.href = "play";
     });
 }
 function recibir(){

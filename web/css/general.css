@@ -230,3 +230,11 @@ a {
     transform: translateX(-100%);
   }
 }
+@media (max-width: 1920px) {
+
+}
+#listaUsuariosConectados{
+  position: absolute;
+  top: 45%;
+  width: 100%;
+}

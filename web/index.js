@@ -49,6 +49,7 @@ io.on('connection', (socket) =>{
         io.sockets.emit('unirse-partida',usuarios_juego);
     });
     socket.on('get-usuarios', (data) => {
+        console.log(usuarios_juego);
         io.sockets.emit('get-usuarios',usuarios_juego);
     });
 });
