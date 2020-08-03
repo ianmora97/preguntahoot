@@ -29,6 +29,7 @@ app.use(require('./routes/routes'));
 app.use(require('./routes/usuarios'));
 app.use(require('./routes/keyGame'));
 app.use(require('./routes/createQ'));
+app.use(require('./routes/inGame'));
 
 //static files
 app.use(express.static(path.join(__dirname)))
@@ -49,7 +50,16 @@ io.on('connection', (socket) =>{
         io.sockets.emit('unirse-partida',usuarios_juego);
     });
     socket.on('get-usuarios', (data) => {
-        console.log(usuarios_juego);
         io.sockets.emit('get-usuarios',usuarios_juego);
+    });
+    socket.on('girar-ruleta-admin', (data) => {
+        io.sockets.emit('girar-ruleta-admin',data);
+    });
+    socket.on('comenzar-juego', (data) => {
+        console.log('[SOCKET] Comenzando Partida');
+        io.sockets.emit('comenzar-juego',data);
+    });
+    socket.on('send-client-question', (data) => {
+        io.sockets.emit('send-client-question',data);
     });
 });

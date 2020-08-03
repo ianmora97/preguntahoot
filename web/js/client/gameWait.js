@@ -6,7 +6,12 @@ function loaded(event) {
 function events(event) {
     recibir();
     unirsePartida();
-    //reloadUsers();
+    comenzarPartida();
+}
+function comenzarPartida(){
+    socket.on('get-usuarios',function (data) {
+        location.href = "playClient";
+    });
 }
 function unirsePartida(){
     var name = $('#nombreUsuarioNuevo').text();

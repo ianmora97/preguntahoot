@@ -12,87 +12,250 @@
     <link rel="stylesheet" href="/css/play.css" />
     <link rel="stylesheet" href="/css/general.css" />
     <link rel="stylesheet" href="/css/animations.css" />
-    <!-- Bundle JQuery Bootstrap -->
     <script src="/js/jq-bs-bundle.js"></script>
   </head>
   <body class="bg-info" style="overflow: hidden;">
     <!--Modales-->
-    <div class="modal fade" id="modalArte" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="modalArte"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog modal-lg h-75" role="document">
         <div class="w-100 mx-auto">
-          <h1 class="text-white text-center font-1 mt-3" style="margin-bottom: 25%;">Arte</h1>
-          <img src="images/tina.png" class="mx-auto d-block">
+          <h1
+            class="text-white text-center font-1 mt-3"
+            style="margin-bottom: 25%;"
+          >
+            Arte
+          </h1>
+          <img src="images/tina.png" class="mx-auto d-block" />
         </div>
       </div>
     </div>
 
-    <div class="modal fade" id="modalCiencia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="modalCiencia"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog modal-lg h-75" role="document">
         <div class="w-100 mx-auto">
-          <h1 class="text-white text-center font-1 mt-3" style="margin-bottom: 25%;">Ciencia</h1>
-          <img src="images/ciencia.png" class="mx-auto d-block">
+          <h1
+            class="text-white text-center font-1 mt-3"
+            style="margin-bottom: 25%;"
+          >
+            Ciencia
+          </h1>
+          <img src="images/ciencia.png" class="mx-auto d-block" />
         </div>
       </div>
     </div>
 
-    <div class="modal fade" id="modalGeografia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="modalGeografia"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog modal-lg h-75" role="document">
         <div class="w-100 mx-auto">
-          <h1 class="text-white text-center font-1 mt-3" style="margin-bottom: 25%;">Geografia</h1>
-          <img src="images/geografia.png" class="mx-auto d-block">
+          <h1
+            class="text-white text-center font-1 mt-3"
+            style="margin-bottom: 25%;"
+          >
+            Geografia
+          </h1>
+          <img src="images/geografia.png" class="mx-auto d-block" />
         </div>
       </div>
     </div>
 
-    <div class="modal fade" id="modalHistoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="modalHistoria"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog modal-lg h-75" role="document">
         <div class="w-100 mx-auto">
-          <h1 class="text-white text-center font-1 mt-3" style="margin-bottom: 25%;">Historia</h1>
-          <img src="images/historia.png" class="mx-auto d-block">
+          <h1
+            class="text-white text-center font-1 mt-3"
+            style="margin-bottom: 25%;"
+          >
+            Historia
+          </h1>
+          <img src="images/historia.png" class="mx-auto d-block" />
         </div>
       </div>
     </div>
 
-    <div class="modal fade" id="modalEntretenimiento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="modalEntretenimiento"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog modal-lg h-75" role="document">
         <div class="w-100 mx-auto">
-          <h1 class="text-white text-center font-1 mt-3" style="margin-bottom: 25%;">Entretenimiento</h1>
-          <img src="images/entre.png" class="mx-auto d-block">
+          <h1
+            class="text-white text-center font-1 mt-3"
+            style="margin-bottom: 25%;"
+          >
+            Entretenimiento
+          </h1>
+          <img src="images/entre.png" class="mx-auto d-block" />
         </div>
       </div>
     </div>
 
-    <div class="modal fade" id="modalDeportes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="modalDeportes"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog modal-lg h-75" role="document">
         <div class="w-100 mx-auto">
-          <h1 class="text-white text-center font-1 mt-3" style="margin-bottom: 25%;">Deportes</h1>
-          <img src="images/deportes.png" class="mx-auto d-block">
+          <h1
+            class="text-white text-center font-1 mt-3"
+            style="margin-bottom: 25%;"
+          >
+            Deportes
+          </h1>
+          <img src="images/deportes.png" class="mx-auto d-block" />
         </div>
       </div>
     </div>
     <!--!modales-->
     <div class="container-fluid" id="contadorPartida" style="display: block;">
-        <h1 class="font-1 text-center pt-5 pt-2">El juego comienza en</h1>
-        <div class="display-5 font-1 text-center align-middle" id="reloj" style="font-size: 25vh;"></div>
+      <h1 class="font-1 text-center pt-5 pt-2">El juego comienza en</h1>
+      <div
+        class="display-5 font-1 text-center align-middle"
+        id="reloj"
+        style="font-size: 25vh;"
+      ></div>
     </div>
     <div class="container" id="ruletaGirarScreen" style="display: none;">
-        <div class="" style="z-index: -10; top: 10%; ">
-            <img src="images/ruleta1.png" 
-            class="mx-auto" 
-            id="ruletaImg" 
-            style="position: absolute;width: 60%;top: 18vw;left: 20%;">
-            <img src="images/ruleta-center.png" id="girarboton"
-            style="position: absolute;z-index: 2;width: 20%;top: 36vw;left: 40%;">
+      <div class="row mt-5" style="width: 320px;">
+        <img
+          src="images/ruleta1.png"
+          class="mx-auto"
+          id="ruletaImg"
+          style="position: absolute; width: 60%; top: 18vw; left: 20%;"
+        />
+        <img
+          src="images/ruleta-center.png"
+          id="girarboton"
+          style="
+            position: absolute;
+            z-index: 2;
+            width: 20%;
+            top: 36vw;
+            left: 40%;
+          "
+        />
+      </div>
+      <!-- <div class="row mt-5" id="listaUsuariosConectados">
+            <div class="container" style="position: relative;top: 30%;">
+                <ul class="list-group" id="usuariosEnSala">
+                  
+                </ul>
+            </div>doGame
+        </div> -->
+    </div>
+    <div class="container-fluid" id="juegoScreen" style="display: none;">
+      <div class="row" id="lineaDetalle">
+        <div class="col-2 py-2">
+          <span id="badgeCategoria" class="align-middle"></span>
         </div>
+        <div class="col-8 py-1 px-0">
+          <h2
+            id="categoriaNombre"
+            class="text-white text-center font-1"
+            style="margin-bottom: 0;"
+          ></h2>
+        </div>
+        <div class="col-2 px-0 pr-2">
+          <span
+            id="tiempoRestante"
+            class="text-white font-1 d-flex justify-content-end"
+            style="font-size: 2em;"
+            >s</span
+          >
+        </div>
+      </div>
+      <div class="row">
+        <div class="col justify-content-center my-2 h-150">
+          <div class="container h-100 p-3 rounded" style="background: #e1dede;">
+            <h5 id="preguntaTexto" class="font-2 text-center"></h5>
+          </div>
+        </div>
+      </div>
+      <div class="row no-gutters">
+        <div class="col-sm-6">
+          <div class="row justify-content-center mt-3">
+            <button
+              type="button"
+              class="btn w-80"
+              id="resA"
+              style="background: crimson; color: white; font-size: 1.4em;"
+            >
+              <span id="r_a" class="fa-a-res"></span>
+            </button>
+          </div>
+          <div class="row justify-content-center mt-3">
+            <button
+              type="button"
+              class="btn w-80"
+              id="resB"
+              style="background: dodgerblue; color: white; font-size: 1.4em;"
+            >
+              <span id="r_b" class="fa-b-res"></span>
+            </button>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="row justify-content-center my-3">
+            <button
+              type="button"
+              class="btn w-80"
+              id="resC"
+              style="background: #fbc737; color: white; font-size: 1.4em;"
+            >
+              <span id="r_c" class="fa-c-res"></span>
+            </button>
+          </div>
+          <div class="row justify-content-center my-3">
+            <button
+              type="button"
+              class="btn w-80"
+              id="resD"
+              style="background: yellowgreen; color: white; font-size: 1.4em;"
+            >
+              <span id="r_d" class="fa-d-res"></span>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="container" id="juegoScreen" style="display: none;">
-      
-    </div>
-    <div class="container" id="resultadosScreen" style="display: none;">
-      
-    </div>
+    <div class="container" id="resultadosScreen" style="display: none;"></div>
 
     <script src="../socket.io/socket.io.js" charset="utf-8"></script>
-    <script src="/js/client/logicGame.js"></script>
+    <script src="/js/client/logicGameClient.js"></script>
   </body>
 </html>

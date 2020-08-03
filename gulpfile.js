@@ -11,6 +11,11 @@ gulp.task('sass', function() {
         .pipe(gulp.dest("web/css"))
         .pipe(browserSync.stream());
 });
+gulp.task('css', function() {
+    return gulp.src('node_modules/animate.css/animate.css')
+        .pipe(gulp.dest("web/css"))
+        .pipe(browserSync.stream());
+});
 
 // move bootstrap JS and Jquery
 gulp.task('js', function() {
@@ -25,8 +30,9 @@ gulp.task('js', function() {
 });
 
 // watching scss/html files
-gulp.task('serve', gulp.series('sass','js', function() {
+gulp.task('serve', gulp.series('sass','js','css', function() {
     gulp.watch("web/scss/*.scss", gulp.series('sass'));
+    gulp.watch("web/scss/*.css", gulp.series('css'));
     gulp.watch("web/js/*.js", gulp.series('js'));
 }));
 

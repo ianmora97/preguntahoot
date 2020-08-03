@@ -27,7 +27,7 @@ router.get('/play',(req,res)=>{
     res.render('play');
 });
 
-router.get('/playAll',(req,res)=>{
+router.get('/playClient',(req,res)=>{
     res.render('playClient');
 });
 

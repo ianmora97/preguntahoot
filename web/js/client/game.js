@@ -9,6 +9,7 @@ function events(event) {
 }
 function begin(){
     $('#play').on('click',function(){
+        socket.emit('comenzar-juego','begin');
         location.href = "play";
     });
 }

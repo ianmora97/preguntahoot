@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Modak&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 @font-face {
   font-family: "Mikado";
   src: url("../fonts/mikadobold-webfont.woff") format("woff");
@@ -21,6 +22,9 @@ a {
 }
 .w-80 {
   width: 80% !important;
+}
+.h-150{
+  height: 150px !important;
 }
 .myt-2 {
   margin-top: 1.5rem !important;
@@ -61,6 +65,9 @@ a {
   bottom: 0;
   left: 0;
   right: 0;
+}
+.font-2 {
+  font-family: "Lato";
 }
 .font-1 {
   font-family: "Mikado";
@@ -122,6 +129,7 @@ a {
   font-size: 8vw;
   font-family: Arial; /* your font family here! */
   font-weight: bold;
+  font-style: normal;
   content: "A";
   padding: 2px 6px;
   border-radius: 5px;
@@ -132,6 +140,7 @@ a {
   font-size: 8vw;
   font-family: Arial; /* your font family here! */
   font-weight: bold;
+  font-style: normal;
   content: "B";
   padding: 2px 6px;
   border-radius: 5px;
@@ -142,6 +151,7 @@ a {
   font-size: 8vw;
   font-family: Arial; /* your font family here! */
   font-weight: bold;
+  font-style: normal;
   content: "C";
   padding: 2px 6px;
   border-radius: 5px;
@@ -152,10 +162,42 @@ a {
   font-size: 8vw;
   font-family: Arial; /* your font family here! */
   font-weight: bold;
+  font-style: normal;
   content: "D";
   padding: 2px 6px;
   border-radius: 5px;
   background-color:yellowgreen;
+  color: white;
+
+}
+
+/*---------------------color style respuestas------------------*/
+.fa-a-res {
+  font-size: 1em;
+  font-family: Arial; /* your font family here! */
+  font-weight: bold;
+  font-style: normal;
+  color: white;
+}
+.fa-b-res {
+  font-size: 1em;
+  font-family: Arial; /* your font family here! */
+  font-weight: bold;
+  font-style: normal;
+  color: white;
+}
+.fa-c-res {
+  font-size: 1em;
+  font-family: Arial; /* your font family here! */
+  font-weight: bold;
+  font-style: normal;
+  color: white;
+}
+.fa-d-res {
+  font-size: 1em;
+  font-family: Arial; /* your font family here! */
+  font-weight: bold;
+  font-style: normal;
   color: white;
 }
 .nav-pills .nav-link.active {

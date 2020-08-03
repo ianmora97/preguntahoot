@@ -25,6 +25,8 @@ function sound(src) {
     this.sound.muted = false;
     document.body.appendChild(this.sound);
     this.play = function () {
+        this.sound.muted = true;
+        this.sound.muted = false;
         this.sound.play();
     }
     this.stop = function () {
@@ -37,7 +39,6 @@ function sound(src) {
 }
 
 function updateClock() {
-    
     $('#reloj').text(totalTime);
     if (totalTime == 0) {
         $('#contadorPartida').hide();
@@ -51,21 +52,14 @@ function updateClock() {
     }
 }
 function girarRuleta() {
-    $('#girarboton').on('click', function () {
+    socket.on('girar-ruleta-admin', function (data) {
         girarSound.play();
         girarLift.play();
-        let randomNumber = Math.floor(Math.random() * 6) + 1;
+        let randomNumber = data.categoria;
         if (randomNumber == 1) {
-            socket.emit('girar-ruleta-admin', {
-                categoria: 1,
-                nombre: 'arte'
-            });
             console.log('Arte');
             $('#ruletaImg').addClass('girarRuleta-arte');
-            setTimeout(() => {        $('#contadorPartida').hide();
-            $('#ruletaGirarScreen').fadeIn();
-            $('body').addClass('bg-primary');
-            $('body').removeClass('bg-info');
+            setTimeout(() => {
                 girarLift.stop();
                 $('#ruletaImg').removeClass('girarRuleta-arte');
                 $('#modalArte').modal('show');
@@ -73,10 +67,6 @@ function girarRuleta() {
             }, 5000);
         }
         if (randomNumber == 2) {
-            socket.emit('girar-ruleta-admin', {
-                categoria: 2,
-                nombre: 'ciencia'
-            });
             console.log('Ciencia');
             $('#ruletaImg').addClass('girarRuleta-ciencia');
             setTimeout(() => {
@@ -87,10 +77,6 @@ function girarRuleta() {
             }, 5000);
         }
         if (randomNumber == 3) {
-            socket.emit('girar-ruleta-admin', {
-                categoria: 3,
-                nombre: 'geografia'
-            });
             console.log('Geografia');
             $('#ruletaImg').addClass('girarRuleta-geografia');
             setTimeout(() => {
@@ -101,10 +87,6 @@ function girarRuleta() {
             }, 5000);
         }
         if (randomNumber == 4) {
-            socket.emit('girar-ruleta-admin', {
-                categoria: 4,
-                nombre: 'historia'
-            });
             console.log('Historia');
             $('#ruletaImg').addClass('girarRuleta-historia');
             setTimeout(() => {
@@ -115,10 +97,6 @@ function girarRuleta() {
             }, 5000);
         }
         if (randomNumber == 5) {
-            socket.emit('girar-ruleta-admin', {
-                categoria: 5,
-                nombre: 'entretenimiento'
-            });
             console.log('Entretenimiento');
             $('#ruletaImg').addClass('girarRuleta-entretenimiento');
             setTimeout(() => {
@@ -129,10 +107,6 @@ function girarRuleta() {
             }, 5000);
         }
         if (randomNumber == 6) {
-            socket.emit('girar-ruleta-admin', {
-                categoria: 6,
-                nombre: 'deportes'
-            });
             console.log('Deportes');
             $('#ruletaImg').addClass('girarRuleta-deportes');
             setTimeout(() => {
@@ -146,10 +120,8 @@ function girarRuleta() {
             var correct = toCorrectCategoria(randomNumber);
             showPreguntas(correct);
         }, 7000);
-
     });
 }
-
 function toCorrectCategoria(rand) {
     switch (rand) {
         case 1:
@@ -166,28 +138,10 @@ function toCorrectCategoria(rand) {
             return 3;
     }
 }
+
 function showPreguntas(cat) {
-    var pregunta = questionBrought;
-    var flag = true;
-    var request = {
-        categoria: cat
-    }
-    $.ajax({
-        type: "POST",
-        url: "bringQuestion",
-        data: JSON.stringify(request),
-        contentType: "application/json"
-    }).then((response) => {
-        pregunta = response;
-        while (flag) {
-            flag = false;
-            for (var i = 0; i < preguntasRealizadas.length; i++) {
-                if (pregunta == preguntasRealizadas[i]) {
-                    flag = true;
-                }
-            }
-        }
-        socket.emit('send-client-question',pregunta);
+    socket.on('send-client-question', function (data) {
+        var pregunta = data;
         preguntasRealizadas.push(pregunta);
         $('.modal').modal('hide');
         $('#ruletaGirarScreen').hide();
@@ -195,26 +149,24 @@ function showPreguntas(cat) {
         $('body').addClass('bg-white');
         $('body').removeClass('bg-primary');
         mostrarCategoriaAgregar(cat);
-
+    
         actualQuestion = pregunta.correcta;
         $('#preguntaTexto').text(pregunta.texto);
         $('#resA').data('a', pregunta.r_a);
         $('#resB').data('b', pregunta.r_b);
         $('#resC').data('c', pregunta.r_c);
         $('#resD').data('d', pregunta.r_d);
-
+    
         $('#r_a').text(pregunta.r_a);
         $('#r_b').text(pregunta.r_b);
         $('#r_c').text(pregunta.r_c);
         $('#r_d').text(pregunta.r_d);
-
+    
         $('#resA').addClass('animate__bounceIn');
         $('#resB').addClass('animate__bounceIn');
         $('#resC').addClass('animate__bounceIn');
         $('#resD').addClass('animate__bounceIn');
-        contadorPartida();
-    }, (error) => {
-        console.log('error del servidor', error);
+        contadorPartida(); 
     });
 }
 
@@ -280,7 +232,7 @@ function intToCategoria(categoria) {
 }
 function contadorPartida() {
     $('#tiempoRestante').text(totalTimePlay+'s');
-    if (totalTimePlay == 0) {
+    if (totalTimePlay == 0 || todosContestaron()) {
         totalTimePlay == 25;
     } else {
         totalTimePlay -= 1;
@@ -301,18 +253,12 @@ function events(event) {
     getUsuariosEnSala();
 }
 function getUsuariosEnSala() {
-    socket.emit('get-usuarios', 'refresh');
-    socket.on('get-usuarios', function (data) {
+    socket.emit('get-usuarios-client','refresh');
+    socket.on('get-usuarios-client', function (data) {
         var usuarios = data;
         if (usuarios.length != 0) {
             for (var i = 0; i < usuarios.length; i++) {
                 jugadores_array.push(usuarios[i]);
-                $('#usuariosEnSala').append(
-                    '<li class="list-group-item d-flex justify-content-between align-items-center">' +
-                    '<i class="fa fa-user text-secondary"></i> <span>' + usuarios[i].username + '</span>' +
-                    '<span class="badge badge-primary badge-pill" data-points="0" data-player="' + usuarios[i].username + '">0</span>' +
-                    '</li>'
-                );
             }
         }
     });
