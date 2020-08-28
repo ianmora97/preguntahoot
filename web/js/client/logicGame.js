@@ -1,5 +1,7 @@
 const socket = io();
 
+var usuarioMe;
+
 var totalTime = 5;
 var totalTimePlay = 25;
 var girarSound = new sound('sounds/fx/girarRuleta.wav');
@@ -14,6 +16,8 @@ var actualQuestion;
 var questionBrought;
 
 var contadorJugadores = 0;
+
+var respuestaActual;
 
 function sound(src) {
     this.sound = document.createElement("audio");
@@ -179,6 +183,7 @@ function showPreguntas(cat) {
         contentType: "application/json"
     }).then((response) => {
         pregunta = response;
+        questionBrought = response;
         while (flag) {
             flag = false;
             for (var i = 0; i < preguntasRealizadas.length; i++) {
@@ -278,14 +283,40 @@ function intToCategoria(categoria) {
             return 'Historia';
     }
 }
+var contestarFlag = false;
 function contadorPartida() {
     $('#tiempoRestante').text(totalTimePlay+'s');
-    if (totalTimePlay == 0) {
+    if (totalTimePlay == 0 || contestarFlag) {
         totalTimePlay == 25;
+        contestarFlag = false;
     } else {
         totalTimePlay -= 1;
         setTimeout("contadorPartida()", 1000);
     }
+}
+function contestarPregunta(){
+    $('#resA').on('click',function(){
+        respuestaActual = $('#resA').text();
+        contestar = true;
+        console.log(questionBrought);
+        socket.emit('usuario-responder', {
+
+        });
+    });
+    $('#resB').on('click',function(){
+        respuestaActual = $('#resB').text();
+        contestar = true;
+    });
+    $('#resC').on('click',function(){
+        respuestaActual = $('#resC').text();
+        contestar = true;
+    });
+    $('#resD').on('click',function(){
+        respuestaActual = $('#resD').text();
+        contestar = true;
+    });
+
+
 }
 function todosContestaron(){
 
@@ -299,6 +330,7 @@ function loaded(event) {
 
 function events(event) {
     getUsuariosEnSala();
+    contestarPregunta();
 }
 function getUsuariosEnSala() {
     socket.emit('get-usuarios', 'refresh');

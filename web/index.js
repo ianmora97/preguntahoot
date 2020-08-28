@@ -8,6 +8,7 @@ const flash     = require('connect-flash');
 token = {};
 usuarioAnfitrion = {};
 usuarios_juego =[];
+respuestas_jugadores = [];
 
 //settings
 app.set('port',process.env.PORT || 80); //creo el puerto del servidor

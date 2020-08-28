@@ -42,7 +42,6 @@ router.post('/keyGameUnirseAPartida',(req,res)=>{
         token:req.body.tokenEntrarPartida
     };
     usuarios_juego.push(usuarioNuevo);
-    // console.log('Usuario',usuarioNuevo.username,' Nuevo Unido a partida:', usuarioNuevo.token,'\nLista:',usuarios_juego);
     res.render('gameWait',{usuarioNuevo,usuarioAnfitrion});
 });
 

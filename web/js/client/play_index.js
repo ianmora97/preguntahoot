@@ -136,44 +136,10 @@ function entrarPartidaAfterKey() {
   $("#entrarPartidaOpenModalKey").click(function () {
     var token = $('#codigoSpan').text();
     $('#tokenEntrarPartida').val(token);
-    var to =$('#tokenEntrarPartida').val();
+    var to = $('#tokenEntrarPartida').val();
     console.log(to);
-  });
-  // $("#ingresarBotonKeyPartidaEnter").click(function () {
-  //   var to = $('#codigoSpan').text();
-  //   var usuario;
-  //   var check = $('#nombreInvitadoKey').val();
-  //   if(check == ""){ //hizo login
-  //     var usu = $('#userUnirseLogin').val();
-  //     var cla = $('#claveUnirseLogin').val();
-  //     usuario = {
-  //       username:usu,
-  //       clave:cla,
-  //       token:to
-  //     };
-  //   }else{ // entra como invitado
-  //     usuario = {
-  //       username:check,
-  //       token:to
-  //     };
-  //   }
-  //   $.ajax({
-  //       type: "POST",
-  //       url: "/keyGameUnirseAPartida",
-  //       data: JSON.stringify(usuario),
-  //       contentType: "application/json"
-  //   }).then((response) => {
-  //     if(response == "Success"){
-          
-  //     }
-  //     if(response == "NotFound"){
-          
-  //     }
-  //   }, (error) => {
-  //   });
-  //  });
+  });  
 }
-
 
 function crearPartidaUsuarioAnfitrion() {
   $('#registrarBotonKeyGame').click(function () {
